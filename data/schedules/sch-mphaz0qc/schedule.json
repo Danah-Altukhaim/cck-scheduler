@@ -1,0 +1,4599 @@
+{
+  "term": {
+    "year": 2026,
+    "season": "Fall",
+    "operating_days": [
+      "Su",
+      "M",
+      "T",
+      "W",
+      "Th"
+    ],
+    "operating_window": {
+      "start_min": 480,
+      "end_min": 1190
+    }
+  },
+  "assignments": [
+    {
+      "section_id": "ACC2201-en-evening-1",
+      "day": "T",
+      "start_min": 1020,
+      "end_min": 1095,
+      "room_code": "B2-028",
+      "instructor_id": "bader-humoud-obaid-al-shammari",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2201-en-evening-1",
+      "day": "Th",
+      "start_min": 1020,
+      "end_min": 1095,
+      "room_code": "B2-028",
+      "instructor_id": "bader-humoud-obaid-al-shammari",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2201-en-midday-2",
+      "day": "Su",
+      "start_min": 750,
+      "end_min": 825,
+      "room_code": "B1-026",
+      "instructor_id": "naser-mohammad-s-al-selahi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2201-en-midday-2",
+      "day": "T",
+      "start_min": 750,
+      "end_min": 825,
+      "room_code": "B1-026",
+      "instructor_id": "naser-mohammad-s-al-selahi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2201-both-morning-1",
+      "day": "T",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "BG-026",
+      "instructor_id": "bader-humoud-obaid-al-shammari",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2201-both-morning-1",
+      "day": "Th",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "BG-026",
+      "instructor_id": "bader-humoud-obaid-al-shammari",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUS2301-en-evening-1",
+      "day": "M",
+      "start_min": 1020,
+      "end_min": 1095,
+      "room_code": "B1-026",
+      "instructor_id": "lubna-faleh-hamad-al-rehemi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUS2301-en-evening-1",
+      "day": "W",
+      "start_min": 1020,
+      "end_min": 1095,
+      "room_code": "B1-026",
+      "instructor_id": "lubna-faleh-hamad-al-rehemi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUS2301-en-midday-2",
+      "day": "Su",
+      "start_min": 750,
+      "end_min": 825,
+      "room_code": "A2-147",
+      "instructor_id": "lubna-faleh-hamad-al-rehemi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUS2301-en-midday-2",
+      "day": "W",
+      "start_min": 750,
+      "end_min": 825,
+      "room_code": "A2-147",
+      "instructor_id": "lubna-faleh-hamad-al-rehemi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUS2301-en-morning-3",
+      "day": "T",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "B2-026",
+      "instructor_id": "lubna-faleh-hamad-al-rehemi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUS2301-en-morning-3",
+      "day": "Th",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "B2-026",
+      "instructor_id": "lubna-faleh-hamad-al-rehemi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUS2301-both-morning-1",
+      "day": "M",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "LAB-015",
+      "instructor_id": "lubna-faleh-hamad-al-rehemi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUS2301-both-morning-1",
+      "day": "W",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "LAB-015",
+      "instructor_id": "lubna-faleh-hamad-al-rehemi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ENL1813-en-evening-1",
+      "day": "Su",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "B1-004",
+      "instructor_id": "omar-samir-el-borno",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ENL1813-en-evening-1",
+      "day": "T",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "B1-004",
+      "instructor_id": "omar-samir-el-borno",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ENL1813-en-morning-3",
+      "day": "Su",
+      "start_min": 540,
+      "end_min": 615,
+      "room_code": "B1-004",
+      "instructor_id": "bshaier-jasem-mohamad-al-buloshi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ENL1813-en-morning-3",
+      "day": "W",
+      "start_min": 540,
+      "end_min": 615,
+      "room_code": "B1-004",
+      "instructor_id": "bshaier-jasem-mohamad-al-buloshi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ENL1813-en-midday-4",
+      "day": "Su",
+      "start_min": 750,
+      "end_min": 825,
+      "room_code": "B1-004",
+      "instructor_id": "farah-faisal-fahad-al-yaqout",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ENL1813-en-midday-4",
+      "day": "W",
+      "start_min": 750,
+      "end_min": 825,
+      "room_code": "B1-004",
+      "instructor_id": "farah-faisal-fahad-al-yaqout",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ENL1813-both-morning-1",
+      "day": "T",
+      "start_min": 600,
+      "end_min": 675,
+      "room_code": "BG-023",
+      "instructor_id": "omar-samir-el-borno",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ENL1813-both-morning-1",
+      "day": "Th",
+      "start_min": 600,
+      "end_min": 675,
+      "room_code": "BG-023",
+      "instructor_id": "omar-samir-el-borno",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2201-en-evening-1",
+      "day": "Su",
+      "start_min": 960,
+      "end_min": 1080,
+      "room_code": "B1-025",
+      "instructor_id": "adel-thamer-shaher",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2201-en-evening-1",
+      "day": "T",
+      "start_min": 960,
+      "end_min": 1080,
+      "room_code": "B1-025",
+      "instructor_id": "adel-thamer-shaher",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2201-en-midday-2",
+      "day": "Su",
+      "start_min": 660,
+      "end_min": 780,
+      "room_code": "B2-028",
+      "instructor_id": "talal-abdulaziz-musaed-al-mobailish",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2201-en-midday-2",
+      "day": "T",
+      "start_min": 660,
+      "end_min": 780,
+      "room_code": "B2-028",
+      "instructor_id": "talal-abdulaziz-musaed-al-mobailish",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2201-both-morning-1",
+      "day": "M",
+      "start_min": 480,
+      "end_min": 600,
+      "room_code": "B2-029",
+      "instructor_id": "talal-abdulaziz-musaed-al-mobailish",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2201-both-morning-1",
+      "day": "W",
+      "start_min": 480,
+      "end_min": 600,
+      "room_code": "B2-029",
+      "instructor_id": "talal-abdulaziz-musaed-al-mobailish",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2202-en-evening-1",
+      "day": "M",
+      "start_min": 1020,
+      "end_min": 1095,
+      "room_code": "B2-028",
+      "instructor_id": "naser-mohammad-s-al-selahi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2202-en-evening-1",
+      "day": "W",
+      "start_min": 1020,
+      "end_min": 1095,
+      "room_code": "B2-028",
+      "instructor_id": "naser-mohammad-s-al-selahi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2202-en-midday-2",
+      "day": "M",
+      "start_min": 720,
+      "end_min": 795,
+      "room_code": "B1-026",
+      "instructor_id": "huda-ahmad-amin-abu-mousa",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2202-en-midday-2",
+      "day": "Th",
+      "start_min": 720,
+      "end_min": 795,
+      "room_code": "B1-026",
+      "instructor_id": "huda-ahmad-amin-abu-mousa",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2202-both-morning-1",
+      "day": "T",
+      "start_min": 630,
+      "end_min": 705,
+      "room_code": "BG-025",
+      "instructor_id": "bader-humoud-obaid-al-shammari",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2202-both-morning-1",
+      "day": "Th",
+      "start_min": 630,
+      "end_min": 705,
+      "room_code": "BG-025",
+      "instructor_id": "bader-humoud-obaid-al-shammari",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2343-en-evening-1",
+      "day": "M",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "LAB-031",
+      "instructor_id": "huda-ahmad-amin-abu-mousa",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2343-en-evening-1",
+      "day": "Th",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "LAB-031",
+      "instructor_id": "huda-ahmad-amin-abu-mousa",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2343-en-midday-2",
+      "day": "Su",
+      "start_min": 660,
+      "end_min": 735,
+      "room_code": "LAB-032",
+      "instructor_id": "eisa-adel-hasan-h-shamsah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2343-en-midday-2",
+      "day": "T",
+      "start_min": 660,
+      "end_min": 735,
+      "room_code": "LAB-032",
+      "instructor_id": "eisa-adel-hasan-h-shamsah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2343-both-morning-1",
+      "day": "T",
+      "start_min": 510,
+      "end_min": 585,
+      "room_code": "LAB-031",
+      "instructor_id": "huda-ahmad-amin-abu-mousa",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2343-both-morning-1",
+      "day": "Th",
+      "start_min": 510,
+      "end_min": 585,
+      "room_code": "LAB-031",
+      "instructor_id": "huda-ahmad-amin-abu-mousa",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ENL1823-en-evening-1",
+      "day": "Su",
+      "start_min": 930,
+      "end_min": 1005,
+      "room_code": "B1-004",
+      "instructor_id": "rana-khan-mohd-ishaque",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ENL1823-en-evening-1",
+      "day": "T",
+      "start_min": 930,
+      "end_min": 1005,
+      "room_code": "B1-004",
+      "instructor_id": "rana-khan-mohd-ishaque",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ENL1823-en-morning-3",
+      "day": "Su",
+      "start_min": 840,
+      "end_min": 915,
+      "room_code": "B1-004",
+      "instructor_id": "rana-khan-mohd-ishaque",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ENL1823-en-morning-3",
+      "day": "T",
+      "start_min": 840,
+      "end_min": 915,
+      "room_code": "B1-004",
+      "instructor_id": "rana-khan-mohd-ishaque",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ENL1823-en-midday-4",
+      "day": "Su",
+      "start_min": 660,
+      "end_min": 735,
+      "room_code": "B1-004",
+      "instructor_id": "aya-mohamed-taha-mohamed",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ENL1823-en-midday-4",
+      "day": "W",
+      "start_min": 660,
+      "end_min": 735,
+      "room_code": "B1-004",
+      "instructor_id": "aya-mohamed-taha-mohamed",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ENL1823-both-morning-1",
+      "day": "Su",
+      "start_min": 600,
+      "end_min": 675,
+      "room_code": "B1-025",
+      "instructor_id": "talal-abdulaziz-m-al-mobailish",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ENL1823-both-morning-1",
+      "day": "T",
+      "start_min": 600,
+      "end_min": 675,
+      "room_code": "B1-025",
+      "instructor_id": "talal-abdulaziz-m-al-mobailish",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ECO2200-en-evening-1",
+      "day": "M",
+      "start_min": 990,
+      "end_min": 1110,
+      "room_code": "B2-029",
+      "instructor_id": "ahmad-jaber-hadam-mayahi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ECO2200-en-evening-1",
+      "day": "W",
+      "start_min": 990,
+      "end_min": 1110,
+      "room_code": "B2-029",
+      "instructor_id": "ahmad-jaber-hadam-mayahi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ECO2200-en-midday-2",
+      "day": "M",
+      "start_min": 720,
+      "end_min": 840,
+      "room_code": "B1-024",
+      "instructor_id": "maria-ibrahim-ameen-al-sendah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ECO2200-en-midday-2",
+      "day": "W",
+      "start_min": 720,
+      "end_min": 840,
+      "room_code": "B1-024",
+      "instructor_id": "maria-ibrahim-ameen-al-sendah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ECO2200-both-morning-1",
+      "day": "M",
+      "start_min": 480,
+      "end_min": 600,
+      "room_code": "BG-025",
+      "instructor_id": "naser-mohammad-s-al-selahi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ECO2200-both-morning-1",
+      "day": "W",
+      "start_min": 480,
+      "end_min": 600,
+      "room_code": "BG-025",
+      "instructor_id": "naser-mohammad-s-al-selahi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2209-en-evening-1",
+      "day": "M",
+      "start_min": 960,
+      "end_min": 1035,
+      "room_code": "BG-026",
+      "instructor_id": "ahmad-esmaiel-khaleel-al-qaad",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2209-en-evening-1",
+      "day": "W",
+      "start_min": 960,
+      "end_min": 1035,
+      "room_code": "BG-026",
+      "instructor_id": "ahmad-esmaiel-khaleel-al-qaad",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2209-en-midday-2",
+      "day": "M",
+      "start_min": 720,
+      "end_min": 795,
+      "room_code": "B1-023",
+      "instructor_id": "ahmad-esmaiel-khaleel-al-qaad",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2209-en-midday-2",
+      "day": "W",
+      "start_min": 720,
+      "end_min": 795,
+      "room_code": "B1-023",
+      "instructor_id": "ahmad-esmaiel-khaleel-al-qaad",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2209-both-morning-1",
+      "day": "M",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "B1-025",
+      "instructor_id": "ahmad-esmaiel-khaleel-al-qaad",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2209-both-morning-1",
+      "day": "Th",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "B1-025",
+      "instructor_id": "ahmad-esmaiel-khaleel-al-qaad",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2262-en-evening-1",
+      "day": "M",
+      "start_min": 960,
+      "end_min": 1080,
+      "room_code": "BG-024",
+      "instructor_id": "huda-ahmad-amin-abu-mousa",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2262-en-evening-1",
+      "day": "W",
+      "start_min": 960,
+      "end_min": 1080,
+      "room_code": "BG-024",
+      "instructor_id": "huda-ahmad-amin-abu-mousa",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2262-en-midday-2",
+      "day": "M",
+      "start_min": 720,
+      "end_min": 840,
+      "room_code": "BG-023",
+      "instructor_id": "abdulrahman-bader-sulaiman-al-qassar",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2262-en-midday-2",
+      "day": "Th",
+      "start_min": 720,
+      "end_min": 840,
+      "room_code": "BG-023",
+      "instructor_id": "abdulrahman-bader-sulaiman-al-qassar",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2262-both-morning-1",
+      "day": "Su",
+      "start_min": 600,
+      "end_min": 720,
+      "room_code": "B2-029",
+      "instructor_id": "huda-ahmad-amin-abu-mousa",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2262-both-morning-1",
+      "day": "W",
+      "start_min": 600,
+      "end_min": 720,
+      "room_code": "B2-029",
+      "instructor_id": "huda-ahmad-amin-abu-mousa",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2385-en-evening-1",
+      "day": "M",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "LAB-016",
+      "instructor_id": "mohamed-awad-farhan-sanhat",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2385-en-evening-1",
+      "day": "Th",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "LAB-016",
+      "instructor_id": "mohamed-awad-farhan-sanhat",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2385-en-midday-2",
+      "day": "M",
+      "start_min": 870,
+      "end_min": 945,
+      "room_code": "LAB-031",
+      "instructor_id": "hussain-ali-hadi-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2385-en-midday-2",
+      "day": "Th",
+      "start_min": 870,
+      "end_min": 945,
+      "room_code": "LAB-031",
+      "instructor_id": "hussain-ali-hadi-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2385-both-morning-1",
+      "day": "T",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "LAB-016",
+      "instructor_id": "mohamed-awad-farhan-sanhat",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2385-both-morning-1",
+      "day": "Th",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "LAB-016",
+      "instructor_id": "mohamed-awad-farhan-sanhat",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GEN2003-en-evening-1",
+      "day": "M",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "B1-004",
+      "instructor_id": "talal-abdulaziz-musaed-al-mobailish",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GEN2003-en-evening-1",
+      "day": "Th",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "B1-004",
+      "instructor_id": "talal-abdulaziz-musaed-al-mobailish",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GEN2003-en-morning-3",
+      "day": "T",
+      "start_min": 630,
+      "end_min": 705,
+      "room_code": "B1-004",
+      "instructor_id": "laila-rasoul-shanawh-alaibi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GEN2003-en-morning-3",
+      "day": "Th",
+      "start_min": 630,
+      "end_min": 705,
+      "room_code": "B1-004",
+      "instructor_id": "laila-rasoul-shanawh-alaibi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GEN2003-en-midday-4",
+      "day": "M",
+      "start_min": 810,
+      "end_min": 885,
+      "room_code": "B1-004",
+      "instructor_id": "rana-khan-mohd-ishaque",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GEN2003-en-midday-4",
+      "day": "Th",
+      "start_min": 810,
+      "end_min": 885,
+      "room_code": "B1-004",
+      "instructor_id": "rana-khan-mohd-ishaque",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GEN2003-both-morning-1",
+      "day": "T",
+      "start_min": 540,
+      "end_min": 615,
+      "room_code": "BG-025",
+      "instructor_id": "laila-rasoul-shanawh-alaibi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GEN2003-both-morning-1",
+      "day": "Th",
+      "start_min": 540,
+      "end_min": 615,
+      "room_code": "BG-025",
+      "instructor_id": "laila-rasoul-shanawh-alaibi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2211-en-evening-1",
+      "day": "Su",
+      "start_min": 1050,
+      "end_min": 1170,
+      "room_code": "BG-023",
+      "instructor_id": "ayedh-abdullah-ayedh-al-mutairi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2211-en-evening-1",
+      "day": "T",
+      "start_min": 1050,
+      "end_min": 1170,
+      "room_code": "BG-023",
+      "instructor_id": "ayedh-abdullah-ayedh-al-mutairi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2211-en-midday-2",
+      "day": "Su",
+      "start_min": 840,
+      "end_min": 960,
+      "room_code": "B2-026",
+      "instructor_id": "ayedh-abdullah-ayedh-al-mutairi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2211-en-midday-2",
+      "day": "T",
+      "start_min": 840,
+      "end_min": 960,
+      "room_code": "B2-026",
+      "instructor_id": "ayedh-abdullah-ayedh-al-mutairi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2211-both-morning-1",
+      "day": "Su",
+      "start_min": 720,
+      "end_min": 840,
+      "room_code": "B2-029",
+      "instructor_id": "ayedh-abdullah-ayedh-al-mutairi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2211-both-morning-1",
+      "day": "W",
+      "start_min": 720,
+      "end_min": 840,
+      "room_code": "B2-029",
+      "instructor_id": "ayedh-abdullah-ayedh-al-mutairi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2234-en-evening-1",
+      "day": "Su",
+      "start_min": 1050,
+      "end_min": 1170,
+      "room_code": "B1-024",
+      "instructor_id": "ahmad-esmaiel-khaleel-al-qaad",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2234-en-evening-1",
+      "day": "T",
+      "start_min": 1050,
+      "end_min": 1170,
+      "room_code": "B1-024",
+      "instructor_id": "ahmad-esmaiel-khaleel-al-qaad",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2234-en-midday-2",
+      "day": "Su",
+      "start_min": 840,
+      "end_min": 960,
+      "room_code": "B1-026",
+      "instructor_id": "mohamed-awad-farhan-sanhat",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2234-en-midday-2",
+      "day": "W",
+      "start_min": 840,
+      "end_min": 960,
+      "room_code": "B1-026",
+      "instructor_id": "mohamed-awad-farhan-sanhat",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2234-both-morning-1",
+      "day": "Su",
+      "start_min": 480,
+      "end_min": 600,
+      "room_code": "B1-024",
+      "instructor_id": "ahmad-esmaiel-khaleel-al-qaad",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2234-both-morning-1",
+      "day": "T",
+      "start_min": 480,
+      "end_min": 600,
+      "room_code": "B1-024",
+      "instructor_id": "ahmad-esmaiel-khaleel-al-qaad",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2265-en-evening-1",
+      "day": "M",
+      "start_min": 840,
+      "end_min": 960,
+      "room_code": "B1-023",
+      "instructor_id": "naser-mohammad-s-al-selahi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2265-en-evening-1",
+      "day": "W",
+      "start_min": 840,
+      "end_min": 960,
+      "room_code": "B1-023",
+      "instructor_id": "naser-mohammad-s-al-selahi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2265-en-midday-2",
+      "day": "Su",
+      "start_min": 720,
+      "end_min": 840,
+      "room_code": "BG-024",
+      "instructor_id": "huda-ahmad-amin-abu-mousa",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2265-en-midday-2",
+      "day": "T",
+      "start_min": 720,
+      "end_min": 840,
+      "room_code": "BG-024",
+      "instructor_id": "huda-ahmad-amin-abu-mousa",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2265-both-morning-1",
+      "day": "Su",
+      "start_min": 480,
+      "end_min": 600,
+      "room_code": "BG-026",
+      "instructor_id": "huda-ahmad-amin-abu-mousa",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2265-both-morning-1",
+      "day": "W",
+      "start_min": 480,
+      "end_min": 600,
+      "room_code": "BG-026",
+      "instructor_id": "huda-ahmad-amin-abu-mousa",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC0012-en-evening-1",
+      "day": "M",
+      "start_min": 1020,
+      "end_min": 1095,
+      "room_code": "LAB-032",
+      "instructor_id": "fahad-awad-aber-s-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC0012-en-evening-1",
+      "day": "Th",
+      "start_min": 1020,
+      "end_min": 1095,
+      "room_code": "LAB-032",
+      "instructor_id": "fahad-awad-aber-s-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC0012-en-midday-2",
+      "day": "T",
+      "start_min": 870,
+      "end_min": 945,
+      "room_code": "LAB-B2-031",
+      "instructor_id": "fahad-awad-aber-s-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC0012-en-midday-2",
+      "day": "Th",
+      "start_min": 870,
+      "end_min": 945,
+      "room_code": "LAB-B2-031",
+      "instructor_id": "fahad-awad-aber-s-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC0012-both-morning-1",
+      "day": "T",
+      "start_min": 630,
+      "end_min": 705,
+      "room_code": "B2-006",
+      "instructor_id": "mohamed-awad-farhan-sanhat",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC0012-both-morning-1",
+      "day": "Th",
+      "start_min": 630,
+      "end_min": 705,
+      "room_code": "B2-006",
+      "instructor_id": "mohamed-awad-farhan-sanhat",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GED0022-en-evening-1",
+      "day": "Su",
+      "start_min": 1020,
+      "end_min": 1095,
+      "room_code": "B1-004",
+      "instructor_id": "talal-abdulaziz-m-al-mobailish",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GED0022-en-evening-1",
+      "day": "Th",
+      "start_min": 1020,
+      "end_min": 1095,
+      "room_code": "B1-004",
+      "instructor_id": "talal-abdulaziz-m-al-mobailish",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GED0022-en-morning-3",
+      "day": "M",
+      "start_min": 540,
+      "end_min": 615,
+      "room_code": "B1-004",
+      "instructor_id": "abdulrahman-bader-sulaiman-al-qassar",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GED0022-en-morning-3",
+      "day": "Th",
+      "start_min": 540,
+      "end_min": 615,
+      "room_code": "B1-004",
+      "instructor_id": "abdulrahman-bader-sulaiman-al-qassar",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GED0022-en-midday-4",
+      "day": "T",
+      "start_min": 720,
+      "end_min": 795,
+      "room_code": "B1-004",
+      "instructor_id": "rana-khan-mohd-ishaque",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GED0022-en-midday-4",
+      "day": "Th",
+      "start_min": 720,
+      "end_min": 795,
+      "room_code": "B1-004",
+      "instructor_id": "rana-khan-mohd-ishaque",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GED0022-both-morning-1",
+      "day": "T",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "B2-029",
+      "instructor_id": "ahmad-jaber-hadam-mayahi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GED0022-both-morning-1",
+      "day": "Th",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "B2-029",
+      "instructor_id": "ahmad-jaber-hadam-mayahi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUAC3005-en-morning-1",
+      "day": "Su",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B2-025",
+      "instructor_id": "mohamed-awad-farhan-sanhat",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUAC3005-en-morning-1",
+      "day": "W",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B2-025",
+      "instructor_id": "mohamed-awad-farhan-sanhat",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GEPH3033-en-morning-1",
+      "day": "M",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "B1-027",
+      "instructor_id": "talal-abdulaziz-m-al-mobailish",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GEPH3033-en-morning-1",
+      "day": "Th",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "B1-027",
+      "instructor_id": "talal-abdulaziz-m-al-mobailish",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUAC4380-en-morning-1",
+      "day": "M",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "B2-024",
+      "instructor_id": "hussain-jassim-mohammad-alali",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUAC4380-en-morning-1",
+      "day": "Th",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "B2-024",
+      "instructor_id": "hussain-jassim-mohammad-alali",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN3100-en-evening-1",
+      "day": "Su",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "BG-027",
+      "instructor_id": "fahad-awad-aber-s-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN3100-en-evening-1",
+      "day": "Th",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "BG-027",
+      "instructor_id": "fahad-awad-aber-s-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN3100-en-midday-2",
+      "day": "M",
+      "start_min": 780,
+      "end_min": 855,
+      "room_code": "BG-026",
+      "instructor_id": "aya-mohamed-taha-mohamed",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN3100-en-midday-2",
+      "day": "W",
+      "start_min": 780,
+      "end_min": 855,
+      "room_code": "BG-026",
+      "instructor_id": "aya-mohamed-taha-mohamed",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GEEC3150-en-evening-1",
+      "day": "M",
+      "start_min": 1080,
+      "end_min": 1155,
+      "room_code": "B1-023",
+      "instructor_id": "eisa-adel-hasan-shamsah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GEEC3150-en-evening-1",
+      "day": "W",
+      "start_min": 1080,
+      "end_min": 1155,
+      "room_code": "B1-023",
+      "instructor_id": "eisa-adel-hasan-shamsah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GEEC3150-en-midday-2",
+      "day": "M",
+      "start_min": 720,
+      "end_min": 795,
+      "room_code": "BG-025",
+      "instructor_id": "adel-thamer-shaher",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GEEC3150-en-midday-2",
+      "day": "Th",
+      "start_min": 720,
+      "end_min": 795,
+      "room_code": "BG-025",
+      "instructor_id": "adel-thamer-shaher",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GEEC3150-en-morning-3",
+      "day": "M",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B1-026",
+      "instructor_id": "adel-thamer-shaher",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GEEC3150-en-morning-3",
+      "day": "W",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B1-026",
+      "instructor_id": "adel-thamer-shaher",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GEEC3150-both-morning-1",
+      "day": "M",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "BG-024",
+      "instructor_id": "adel-thamer-shaher",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GEEC3150-both-morning-1",
+      "day": "Th",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "BG-024",
+      "instructor_id": "adel-thamer-shaher",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUAC3050-en-morning-1",
+      "day": "M",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B2-023",
+      "instructor_id": "adel-thamer-qseem-shaher",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUAC3050-en-morning-1",
+      "day": "W",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B2-023",
+      "instructor_id": "adel-thamer-qseem-shaher",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUAC4455-en-morning-1",
+      "day": "Su",
+      "start_min": 600,
+      "end_min": 675,
+      "room_code": "B2-025",
+      "instructor_id": "hussain-jassim-mohammad-alali",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUAC4455-en-morning-1",
+      "day": "T",
+      "start_min": 600,
+      "end_min": 675,
+      "room_code": "B2-025",
+      "instructor_id": "hussain-jassim-mohammad-alali",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUAC4720-en-morning-1",
+      "day": "Su",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B1-027",
+      "instructor_id": "hussain-jassim-mohammad-alali",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUAC4720-en-morning-1",
+      "day": "T",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B1-027",
+      "instructor_id": "hussain-jassim-mohammad-alali",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUMG3105-en-evening-1",
+      "day": "M",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "BG-023",
+      "instructor_id": "ahmad-ismaeil-khaleel-al-qaed",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUMG3105-en-evening-1",
+      "day": "W",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "BG-023",
+      "instructor_id": "ahmad-ismaeil-khaleel-al-qaed",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUMG3105-en-midday-2",
+      "day": "M",
+      "start_min": 840,
+      "end_min": 915,
+      "room_code": "BG-024",
+      "instructor_id": "sheena-ray-varghese",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUMG3105-en-midday-2",
+      "day": "W",
+      "start_min": 840,
+      "end_min": 915,
+      "room_code": "BG-024",
+      "instructor_id": "sheena-ray-varghese",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUMG3105-en-morning-3",
+      "day": "M",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B2-028",
+      "instructor_id": "sheena-ray-varghese",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUMG3105-en-morning-3",
+      "day": "W",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B2-028",
+      "instructor_id": "sheena-ray-varghese",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUMG3105-both-morning-1",
+      "day": "T",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "BG-027",
+      "instructor_id": "ahmad-ismaeil-khaleel-al-qaed",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUMG3105-both-morning-1",
+      "day": "Th",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "BG-027",
+      "instructor_id": "ahmad-ismaeil-khaleel-al-qaed",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUAC4120-en-morning-1",
+      "day": "Su",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B2-024",
+      "instructor_id": "naser-mohammad-s-al-selahi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUAC4120-en-morning-1",
+      "day": "T",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B2-024",
+      "instructor_id": "naser-mohammad-s-al-selahi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUAC4780-en-morning-1",
+      "day": "M",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B2-024",
+      "instructor_id": "ahad-haloul-farhan-al-otaibi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUAC4780-en-morning-1",
+      "day": "Th",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B2-024",
+      "instructor_id": "ahad-haloul-farhan-al-otaibi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GECU4100-en-evening-1",
+      "day": "Su",
+      "start_min": 1020,
+      "end_min": 1095,
+      "room_code": "BG-025",
+      "instructor_id": "bshaier-jasem-mohamad-al-buloshi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GECU4100-en-evening-1",
+      "day": "W",
+      "start_min": 1020,
+      "end_min": 1095,
+      "room_code": "BG-025",
+      "instructor_id": "bshaier-jasem-mohamad-al-buloshi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GECU4100-en-midday-2",
+      "day": "Su",
+      "start_min": 870,
+      "end_min": 945,
+      "room_code": "BG-025",
+      "instructor_id": "eisa-adel-hasan-shamsah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GECU4100-en-midday-2",
+      "day": "T",
+      "start_min": 870,
+      "end_min": 945,
+      "room_code": "BG-025",
+      "instructor_id": "eisa-adel-hasan-shamsah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GECU4100-en-morning-3",
+      "day": "T",
+      "start_min": 690,
+      "end_min": 765,
+      "room_code": "B1-025",
+      "instructor_id": "bshaier-jasem-mohamad-al-buloshi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GECU4100-en-morning-3",
+      "day": "Th",
+      "start_min": 690,
+      "end_min": 765,
+      "room_code": "B1-025",
+      "instructor_id": "bshaier-jasem-mohamad-al-buloshi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GECU4100-both-morning-1",
+      "day": "T",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "BG-026",
+      "instructor_id": "bshaier-jasem-mohamad-al-buloshi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GECU4100-both-morning-1",
+      "day": "Th",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "BG-026",
+      "instructor_id": "bshaier-jasem-mohamad-al-buloshi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN4200-en-evening-1",
+      "day": "M",
+      "start_min": 1020,
+      "end_min": 1095,
+      "room_code": "B1-025",
+      "instructor_id": "ahad-haloul-farhan-al-otaibi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN4200-en-evening-1",
+      "day": "W",
+      "start_min": 1020,
+      "end_min": 1095,
+      "room_code": "B1-025",
+      "instructor_id": "ahad-haloul-farhan-al-otaibi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN4200-en-midday-2",
+      "day": "M",
+      "start_min": 720,
+      "end_min": 795,
+      "room_code": "B2-028",
+      "instructor_id": "omar-jaber-radwan-aburumman",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN4200-en-midday-2",
+      "day": "W",
+      "start_min": 720,
+      "end_min": 795,
+      "room_code": "B2-028",
+      "instructor_id": "omar-jaber-radwan-aburumman",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN4200-en-morning-3",
+      "day": "M",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "B1-023",
+      "instructor_id": "omar-jaber-radwan-aburumman",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN4200-en-morning-3",
+      "day": "W",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "B1-023",
+      "instructor_id": "omar-jaber-radwan-aburumman",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN4200-both-morning-1",
+      "day": "M",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "BG-027",
+      "instructor_id": "abrar-maneef-rajab-a-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN4200-both-morning-1",
+      "day": "W",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "BG-027",
+      "instructor_id": "abrar-maneef-rajab-a-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2216-en-evening-1",
+      "day": "M",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "B1-026",
+      "instructor_id": "maria-ibrahim-ameen-al-sendah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2216-en-evening-1",
+      "day": "W",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "B1-026",
+      "instructor_id": "maria-ibrahim-ameen-al-sendah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2216-en-midday-2",
+      "day": "Su",
+      "start_min": 780,
+      "end_min": 855,
+      "room_code": "BG-027",
+      "instructor_id": "anusha-zulfiqar-ali-shalwani",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2216-en-midday-2",
+      "day": "Th",
+      "start_min": 780,
+      "end_min": 855,
+      "room_code": "BG-027",
+      "instructor_id": "anusha-zulfiqar-ali-shalwani",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2216-en-morning-3",
+      "day": "M",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B1-023",
+      "instructor_id": "anusha-zulfiqar-ali-shalwani",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2216-en-morning-3",
+      "day": "W",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B1-023",
+      "instructor_id": "anusha-zulfiqar-ali-shalwani",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2216-both-morning-1",
+      "day": "M",
+      "start_min": 720,
+      "end_min": 795,
+      "room_code": "BG-024",
+      "instructor_id": "anusha-zulfiqar-ali-shalwani",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2216-both-morning-1",
+      "day": "W",
+      "start_min": 720,
+      "end_min": 795,
+      "room_code": "BG-024",
+      "instructor_id": "anusha-zulfiqar-ali-shalwani",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GED2234-en-evening-1",
+      "day": "M",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "B2-029",
+      "instructor_id": "laila-rasoul-shanawh-alaibi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GED2234-en-evening-1",
+      "day": "Th",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "B2-029",
+      "instructor_id": "laila-rasoul-shanawh-alaibi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GED2234-en-midday-2",
+      "day": "Su",
+      "start_min": 660,
+      "end_min": 735,
+      "room_code": "B1-026",
+      "instructor_id": "laila-rasoul-shanawh-alaibi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GED2234-en-midday-2",
+      "day": "W",
+      "start_min": 660,
+      "end_min": 735,
+      "room_code": "B1-026",
+      "instructor_id": "laila-rasoul-shanawh-alaibi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GED2234-en-morning-3",
+      "day": "Su",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "B1-026",
+      "instructor_id": "laila-rasoul-shanawh-alaibi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GED2234-en-morning-3",
+      "day": "W",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "B1-026",
+      "instructor_id": "laila-rasoul-shanawh-alaibi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GED2234-both-morning-1",
+      "day": "Su",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "BG-024",
+      "instructor_id": "farah-faisal-fahad-al-yaqout",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "GED2234-both-morning-1",
+      "day": "T",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "BG-024",
+      "instructor_id": "farah-faisal-fahad-al-yaqout",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2206-en-morning-1",
+      "day": "Su",
+      "start_min": 480,
+      "end_min": 600,
+      "room_code": "B2-023",
+      "instructor_id": "eisa-adel-hasan-shamsah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2206-en-morning-1",
+      "day": "Th",
+      "start_min": 480,
+      "end_min": 600,
+      "room_code": "B2-023",
+      "instructor_id": "eisa-adel-hasan-shamsah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2217-en-morning-1",
+      "day": "M",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B1-027",
+      "instructor_id": "omar-jaber-radwan-aburumman",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2217-en-morning-1",
+      "day": "W",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B1-027",
+      "instructor_id": "omar-jaber-radwan-aburumman",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2282-en-morning-1",
+      "day": "M",
+      "start_min": 720,
+      "end_min": 840,
+      "room_code": "B2-027",
+      "instructor_id": "eisa-adel-hasan-shamsah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2282-en-morning-1",
+      "day": "Th",
+      "start_min": 720,
+      "end_min": 840,
+      "room_code": "B2-027",
+      "instructor_id": "eisa-adel-hasan-shamsah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2207-en-morning-1",
+      "day": "Su",
+      "start_min": 480,
+      "end_min": 600,
+      "room_code": "B2-027",
+      "instructor_id": "saad-ali-husain-kakouli",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2207-en-morning-1",
+      "day": "W",
+      "start_min": 480,
+      "end_min": 600,
+      "room_code": "B2-027",
+      "instructor_id": "saad-ali-husain-kakouli",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2283-en-morning-1",
+      "day": "Su",
+      "start_min": 750,
+      "end_min": 870,
+      "room_code": "B2-024",
+      "instructor_id": "maria-ibrahim-ameen-al-sendah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2283-en-morning-1",
+      "day": "Th",
+      "start_min": 750,
+      "end_min": 870,
+      "room_code": "B2-024",
+      "instructor_id": "maria-ibrahim-ameen-al-sendah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2291-en-morning-1",
+      "day": "Su",
+      "start_min": 600,
+      "end_min": 720,
+      "room_code": "B2-024",
+      "instructor_id": "rana-khan-mohd-ishaque",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2291-en-morning-1",
+      "day": "T",
+      "start_min": 600,
+      "end_min": 720,
+      "room_code": "B2-024",
+      "instructor_id": "rana-khan-mohd-ishaque",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2213-en-morning-1",
+      "day": "M",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B2-027",
+      "instructor_id": "saad-ali-husain-kakouli",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2213-en-morning-1",
+      "day": "Th",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B2-027",
+      "instructor_id": "saad-ali-husain-kakouli",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2260-en-morning-1",
+      "day": "Su",
+      "start_min": 600,
+      "end_min": 720,
+      "room_code": "B2-027",
+      "instructor_id": "omar-jaber-radwan-aburumman",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2260-en-morning-1",
+      "day": "Th",
+      "start_min": 600,
+      "end_min": 720,
+      "room_code": "B2-027",
+      "instructor_id": "omar-jaber-radwan-aburumman",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2261-en-morning-1",
+      "day": "M",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "B2-025",
+      "instructor_id": "maria-ibrahim-ameen-al-sendah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2261-en-morning-1",
+      "day": "W",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "B2-025",
+      "instructor_id": "maria-ibrahim-ameen-al-sendah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2292-en-morning-1",
+      "day": "M",
+      "start_min": 840,
+      "end_min": 960,
+      "room_code": "B1-027",
+      "instructor_id": "abrar-maneef-rajab-a-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2292-en-morning-1",
+      "day": "Th",
+      "start_min": 840,
+      "end_min": 960,
+      "room_code": "B1-027",
+      "instructor_id": "abrar-maneef-rajab-a-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUCO3005-en-evening-1",
+      "day": "M",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "BG-025",
+      "instructor_id": "maria-i-al-sendah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUCO3005-en-evening-1",
+      "day": "W",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "BG-025",
+      "instructor_id": "maria-i-al-sendah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUCO3005-en-midday-2",
+      "day": "M",
+      "start_min": 780,
+      "end_min": 855,
+      "room_code": "BG-027",
+      "instructor_id": "maria-i-al-sendah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUCO3005-en-midday-2",
+      "day": "W",
+      "start_min": 780,
+      "end_min": 855,
+      "room_code": "BG-027",
+      "instructor_id": "maria-i-al-sendah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUCO3005-both-morning-1",
+      "day": "M",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "BG-023",
+      "instructor_id": "maria-i-al-sendah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUCO3005-both-morning-1",
+      "day": "W",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "BG-023",
+      "instructor_id": "maria-i-al-sendah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN3025-en-morning-1",
+      "day": "M",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "B2-028",
+      "instructor_id": "rana-khan-mohd-ishaque",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN3025-en-morning-1",
+      "day": "W",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "B2-028",
+      "instructor_id": "rana-khan-mohd-ishaque",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUHR4120-en-evening-1",
+      "day": "M",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "BG-027",
+      "instructor_id": "omar-jaber-radwan-aburumman",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUHR4120-en-evening-1",
+      "day": "W",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "BG-027",
+      "instructor_id": "omar-jaber-radwan-aburumman",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUHR4120-en-midday-2",
+      "day": "Su",
+      "start_min": 780,
+      "end_min": 855,
+      "room_code": "B2-028",
+      "instructor_id": "adel-thamer-qseem-shaher",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUHR4120-en-midday-2",
+      "day": "T",
+      "start_min": 780,
+      "end_min": 855,
+      "room_code": "B2-028",
+      "instructor_id": "adel-thamer-qseem-shaher",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUHR4120-both-morning-1",
+      "day": "T",
+      "start_min": 660,
+      "end_min": 735,
+      "room_code": "B2-029",
+      "instructor_id": "reem-m-al-qenai",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUHR4120-both-morning-1",
+      "day": "Th",
+      "start_min": 660,
+      "end_min": 735,
+      "room_code": "B2-029",
+      "instructor_id": "reem-m-al-qenai",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUCO3160-en-evening-1",
+      "day": "Su",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "B1-026",
+      "instructor_id": "drabdulrahman-al-qassar",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUCO3160-en-evening-1",
+      "day": "Th",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "B1-026",
+      "instructor_id": "drabdulrahman-al-qassar",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUCO3160-en-midday-2",
+      "day": "Su",
+      "start_min": 690,
+      "end_min": 765,
+      "room_code": "BG-027",
+      "instructor_id": "mohamed-awad-farhan-sanhat",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUCO3160-en-midday-2",
+      "day": "W",
+      "start_min": 690,
+      "end_min": 765,
+      "room_code": "BG-027",
+      "instructor_id": "mohamed-awad-farhan-sanhat",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUCO3160-both-morning-1",
+      "day": "T",
+      "start_min": 630,
+      "end_min": 705,
+      "room_code": "B1-026",
+      "instructor_id": "huda-ahmad-amin-abu-mousa",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUCO3160-both-morning-1",
+      "day": "Th",
+      "start_min": 630,
+      "end_min": 705,
+      "room_code": "B1-026",
+      "instructor_id": "huda-ahmad-amin-abu-mousa",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN4250-en-evening-1",
+      "day": "Su",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "B1-025",
+      "instructor_id": "abdulrahman-bader-sulaiman-al-qassar",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN4250-en-evening-1",
+      "day": "Th",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "B1-025",
+      "instructor_id": "abdulrahman-bader-sulaiman-al-qassar",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN4250-en-midday-2",
+      "day": "M",
+      "start_min": 870,
+      "end_min": 945,
+      "room_code": "B1-025",
+      "instructor_id": "fahad-awad-aber-s-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN4250-en-midday-2",
+      "day": "W",
+      "start_min": 870,
+      "end_min": 945,
+      "room_code": "B1-025",
+      "instructor_id": "fahad-awad-aber-s-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN4250-both-morning-1",
+      "day": "T",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B1-026",
+      "instructor_id": "talal-abdulaziz-musaed-al-mobailish",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN4250-both-morning-1",
+      "day": "Th",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B1-026",
+      "instructor_id": "talal-abdulaziz-musaed-al-mobailish",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN3230-en-evening-1",
+      "day": "Su",
+      "start_min": 1020,
+      "end_min": 1095,
+      "room_code": "BG-027",
+      "instructor_id": "ahad-haloul-farhan-al-otaibi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN3230-en-evening-1",
+      "day": "T",
+      "start_min": 1020,
+      "end_min": 1095,
+      "room_code": "BG-027",
+      "instructor_id": "ahad-haloul-farhan-al-otaibi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN3230-en-midday-2",
+      "day": "M",
+      "start_min": 840,
+      "end_min": 915,
+      "room_code": "B1-024",
+      "instructor_id": "talal-abdulaziz-musaed-al-mobailish",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN3230-en-midday-2",
+      "day": "W",
+      "start_min": 840,
+      "end_min": 915,
+      "room_code": "B1-024",
+      "instructor_id": "talal-abdulaziz-musaed-al-mobailish",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN3230-both-morning-1",
+      "day": "M",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B1-024",
+      "instructor_id": "aya-mohamed-taha-mohamed",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN3230-both-morning-1",
+      "day": "Th",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B1-024",
+      "instructor_id": "aya-mohamed-taha-mohamed",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN4251-en-evening-1",
+      "day": "T",
+      "start_min": 960,
+      "end_min": 1035,
+      "room_code": "BG-026",
+      "instructor_id": "eisa-adel-hasan-shamsah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN4251-en-evening-1",
+      "day": "Th",
+      "start_min": 960,
+      "end_min": 1035,
+      "room_code": "BG-026",
+      "instructor_id": "eisa-adel-hasan-shamsah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN4251-en-midday-2",
+      "day": "M",
+      "start_min": 870,
+      "end_min": 945,
+      "room_code": "B2-028",
+      "instructor_id": "ahmad-ismaeil-khaleel-al-qaed",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN4251-en-midday-2",
+      "day": "W",
+      "start_min": 870,
+      "end_min": 945,
+      "room_code": "B2-028",
+      "instructor_id": "ahmad-ismaeil-khaleel-al-qaed",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN4251-both-morning-1",
+      "day": "Su",
+      "start_min": 600,
+      "end_min": 675,
+      "room_code": "BG-027",
+      "instructor_id": "ahad-haloul-farhan-al-otaibi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN4251-both-morning-1",
+      "day": "W",
+      "start_min": 600,
+      "end_min": 675,
+      "room_code": "BG-027",
+      "instructor_id": "ahad-haloul-farhan-al-otaibi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2232-en-evening-1",
+      "day": "Su",
+      "start_min": 1050,
+      "end_min": 1170,
+      "room_code": "BG-026",
+      "instructor_id": "talal-abdulaziz-musaed-al-mobailish",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2232-en-evening-1",
+      "day": "T",
+      "start_min": 1050,
+      "end_min": 1170,
+      "room_code": "BG-026",
+      "instructor_id": "talal-abdulaziz-musaed-al-mobailish",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2232-en-midday-2",
+      "day": "M",
+      "start_min": 810,
+      "end_min": 930,
+      "room_code": "BG-025",
+      "instructor_id": "adel-thamer-qseem-shaher",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2232-en-midday-2",
+      "day": "Th",
+      "start_min": 810,
+      "end_min": 930,
+      "room_code": "BG-025",
+      "instructor_id": "adel-thamer-qseem-shaher",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2232-both-morning-1",
+      "day": "Su",
+      "start_min": 480,
+      "end_min": 600,
+      "room_code": "B1-025",
+      "instructor_id": "maria-ibrahim-ameen-al-sendah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2232-both-morning-1",
+      "day": "T",
+      "start_min": 480,
+      "end_min": 600,
+      "room_code": "B1-025",
+      "instructor_id": "maria-ibrahim-ameen-al-sendah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2202-en-evening-1",
+      "day": "M",
+      "start_min": 1020,
+      "end_min": 1095,
+      "room_code": "BG-023",
+      "instructor_id": "abdulrahman-bader-sulaiman-al-qassar",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2202-en-evening-1",
+      "day": "W",
+      "start_min": 1020,
+      "end_min": 1095,
+      "room_code": "BG-023",
+      "instructor_id": "abdulrahman-bader-sulaiman-al-qassar",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2202-en-midday-2",
+      "day": "M",
+      "start_min": 750,
+      "end_min": 825,
+      "room_code": "B2-029",
+      "instructor_id": "ahmad-jaber-hadam-mayahi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2202-en-midday-2",
+      "day": "Th",
+      "start_min": 750,
+      "end_min": 825,
+      "room_code": "B2-029",
+      "instructor_id": "ahmad-jaber-hadam-mayahi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2202-both-morning-1",
+      "day": "M",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B1-025",
+      "instructor_id": "maria-ibrahim-ameen-al-sendah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2202-both-morning-1",
+      "day": "W",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B1-025",
+      "instructor_id": "maria-ibrahim-ameen-al-sendah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "RET2213-en-evening-1",
+      "day": "M",
+      "start_min": 960,
+      "end_min": 1035,
+      "room_code": "B2-026",
+      "instructor_id": "anusha-zulfiqar-ali-shalwani",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "RET2213-en-evening-1",
+      "day": "W",
+      "start_min": 960,
+      "end_min": 1035,
+      "room_code": "B2-026",
+      "instructor_id": "anusha-zulfiqar-ali-shalwani",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "RET2213-en-midday-2",
+      "day": "M",
+      "start_min": 870,
+      "end_min": 945,
+      "room_code": "BG-027",
+      "instructor_id": "anusha-zulfiqar-ali-shalwani",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "RET2213-en-midday-2",
+      "day": "W",
+      "start_min": 870,
+      "end_min": 945,
+      "room_code": "BG-027",
+      "instructor_id": "anusha-zulfiqar-ali-shalwani",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "RET2213-both-morning-1",
+      "day": "Su",
+      "start_min": 600,
+      "end_min": 675,
+      "room_code": "BG-026",
+      "instructor_id": "abrar-maneef-rajab-a-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "RET2213-both-morning-1",
+      "day": "W",
+      "start_min": 600,
+      "end_min": 675,
+      "room_code": "BG-026",
+      "instructor_id": "abrar-maneef-rajab-a-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2203-en-evening-1",
+      "day": "Su",
+      "start_min": 840,
+      "end_min": 960,
+      "room_code": "BG-024",
+      "instructor_id": "ahmad-ismaeil-khaleel-al-qaed",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2203-en-evening-1",
+      "day": "Th",
+      "start_min": 840,
+      "end_min": 960,
+      "room_code": "BG-024",
+      "instructor_id": "ahmad-ismaeil-khaleel-al-qaed",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2203-en-midday-2",
+      "day": "Su",
+      "start_min": 720,
+      "end_min": 840,
+      "room_code": "B1-023",
+      "instructor_id": "sheena-ray-varghese",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2203-en-midday-2",
+      "day": "T",
+      "start_min": 720,
+      "end_min": 840,
+      "room_code": "B1-023",
+      "instructor_id": "sheena-ray-varghese",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2203-both-morning-1",
+      "day": "T",
+      "start_min": 600,
+      "end_min": 720,
+      "room_code": "B1-024",
+      "instructor_id": "naser-mohammad-s-al-selahi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2203-both-morning-1",
+      "day": "Th",
+      "start_min": 600,
+      "end_min": 720,
+      "room_code": "B1-024",
+      "instructor_id": "naser-mohammad-s-al-selahi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2204-en-evening-1",
+      "day": "M",
+      "start_min": 960,
+      "end_min": 1035,
+      "room_code": "B1-024",
+      "instructor_id": "ahmad-ismaeil-khaleel-al-qaed",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2204-en-evening-1",
+      "day": "Th",
+      "start_min": 960,
+      "end_min": 1035,
+      "room_code": "B1-024",
+      "instructor_id": "ahmad-ismaeil-khaleel-al-qaed",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2204-en-midday-2",
+      "day": "T",
+      "start_min": 870,
+      "end_min": 945,
+      "room_code": "B1-024",
+      "instructor_id": "abdulrahman-bader-sulaiman-al-qassar",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2204-en-midday-2",
+      "day": "Th",
+      "start_min": 870,
+      "end_min": 945,
+      "room_code": "B1-024",
+      "instructor_id": "abdulrahman-bader-sulaiman-al-qassar",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2204-both-morning-1",
+      "day": "Su",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "BG-024",
+      "instructor_id": "reem-m-al-qenai",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2204-both-morning-1",
+      "day": "T",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "BG-024",
+      "instructor_id": "reem-m-al-qenai",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2225-en-evening-1",
+      "day": "Su",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "B2-029",
+      "instructor_id": "aya-mohamed-taha-mohamed",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2225-en-evening-1",
+      "day": "W",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "B2-029",
+      "instructor_id": "aya-mohamed-taha-mohamed",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2225-en-midday-2",
+      "day": "M",
+      "start_min": 840,
+      "end_min": 915,
+      "room_code": "BG-023",
+      "instructor_id": "eisa-adel-hasan-shamsah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2225-en-midday-2",
+      "day": "W",
+      "start_min": 840,
+      "end_min": 915,
+      "room_code": "BG-023",
+      "instructor_id": "eisa-adel-hasan-shamsah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2225-both-morning-1",
+      "day": "Su",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B2-028",
+      "instructor_id": "adel-thamer-qseem-shaher",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2225-both-morning-1",
+      "day": "T",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B2-028",
+      "instructor_id": "adel-thamer-qseem-shaher",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "RET2214-en-evening-1",
+      "day": "T",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "B1-023",
+      "instructor_id": "adel-thamer-qseem-shaher",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "RET2214-en-evening-1",
+      "day": "Th",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "B1-023",
+      "instructor_id": "adel-thamer-qseem-shaher",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "RET2214-en-midday-2",
+      "day": "T",
+      "start_min": 870,
+      "end_min": 945,
+      "room_code": "BG-027",
+      "instructor_id": "maria-ibrahim-ameen-al-sendah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "RET2214-en-midday-2",
+      "day": "Th",
+      "start_min": 870,
+      "end_min": 945,
+      "room_code": "BG-027",
+      "instructor_id": "maria-ibrahim-ameen-al-sendah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "RET2214-both-morning-1",
+      "day": "M",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "BG-024",
+      "instructor_id": "rana-khan-mohd-ishaque",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "RET2214-both-morning-1",
+      "day": "Th",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "BG-024",
+      "instructor_id": "rana-khan-mohd-ishaque",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2008-en-evening-1",
+      "day": "M",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "B1-025",
+      "instructor_id": "fahad-awad-aber-s-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2008-en-evening-1",
+      "day": "W",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "B1-025",
+      "instructor_id": "fahad-awad-aber-s-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2008-en-midday-2",
+      "day": "Su",
+      "start_min": 870,
+      "end_min": 945,
+      "room_code": "BG-026",
+      "instructor_id": "ahad-haloul-farhan-al-otaibi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2008-en-midday-2",
+      "day": "W",
+      "start_min": 870,
+      "end_min": 945,
+      "room_code": "BG-026",
+      "instructor_id": "ahad-haloul-farhan-al-otaibi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2008-both-morning-1",
+      "day": "Su",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "B2-028",
+      "instructor_id": "fahad-awad-aber-s-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2008-both-morning-1",
+      "day": "T",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "B2-028",
+      "instructor_id": "fahad-awad-aber-s-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2223-en-evening-1",
+      "day": "M",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "BG-024",
+      "instructor_id": "abdulrahman-bader-sulaiman-al-qassar",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2223-en-evening-1",
+      "day": "W",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "BG-024",
+      "instructor_id": "abdulrahman-bader-sulaiman-al-qassar",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2223-en-midday-2",
+      "day": "Su",
+      "start_min": 690,
+      "end_min": 765,
+      "room_code": "BG-026",
+      "instructor_id": "ahad-haloul-farhan-al-otaibi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2223-en-midday-2",
+      "day": "W",
+      "start_min": 690,
+      "end_min": 765,
+      "room_code": "BG-026",
+      "instructor_id": "ahad-haloul-farhan-al-otaibi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2223-both-morning-1",
+      "day": "T",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B1-023",
+      "instructor_id": "anusha-zulfiqar-ali-shalwani",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2223-both-morning-1",
+      "day": "Th",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B1-023",
+      "instructor_id": "anusha-zulfiqar-ali-shalwani",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2224-en-evening-1",
+      "day": "M",
+      "start_min": 1050,
+      "end_min": 1170,
+      "room_code": "BG-026",
+      "instructor_id": "adel-thamer-shaher",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2224-en-evening-1",
+      "day": "W",
+      "start_min": 1050,
+      "end_min": 1170,
+      "room_code": "BG-026",
+      "instructor_id": "adel-thamer-shaher",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2224-en-midday-2",
+      "day": "M",
+      "start_min": 810,
+      "end_min": 930,
+      "room_code": "B1-026",
+      "instructor_id": "ahad-haloul-farhan-al-otaibi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2224-en-midday-2",
+      "day": "Th",
+      "start_min": 810,
+      "end_min": 930,
+      "room_code": "B1-026",
+      "instructor_id": "ahad-haloul-farhan-al-otaibi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2224-both-morning-1",
+      "day": "Su",
+      "start_min": 480,
+      "end_min": 600,
+      "room_code": "BG-023",
+      "instructor_id": "abrar-maneef-rajab-a-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2224-both-morning-1",
+      "day": "T",
+      "start_min": 480,
+      "end_min": 600,
+      "room_code": "BG-023",
+      "instructor_id": "abrar-maneef-rajab-a-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2228-en-evening-1",
+      "day": "Su",
+      "start_min": 960,
+      "end_min": 1035,
+      "room_code": "B1-024",
+      "instructor_id": "fahad-awad-aber-s-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2228-en-evening-1",
+      "day": "T",
+      "start_min": 960,
+      "end_min": 1035,
+      "room_code": "B1-024",
+      "instructor_id": "fahad-awad-aber-s-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2228-en-midday-2",
+      "day": "M",
+      "start_min": 720,
+      "end_min": 795,
+      "room_code": "B2-026",
+      "instructor_id": "talal-abdulaziz-musaed-al-mobailish",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2228-en-midday-2",
+      "day": "W",
+      "start_min": 720,
+      "end_min": 795,
+      "room_code": "B2-026",
+      "instructor_id": "talal-abdulaziz-musaed-al-mobailish",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2228-both-morning-1",
+      "day": "M",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "B1-024",
+      "instructor_id": "aya-mohamed-taha-mohamed",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MGT2228-both-morning-1",
+      "day": "W",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "B1-024",
+      "instructor_id": "aya-mohamed-taha-mohamed",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "RET2223-en-evening-1",
+      "day": "Su",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "B2-028",
+      "instructor_id": "adel-thamer-shaher",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "RET2223-en-evening-1",
+      "day": "Th",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "B2-028",
+      "instructor_id": "adel-thamer-shaher",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "RET2223-en-midday-2",
+      "day": "Su",
+      "start_min": 780,
+      "end_min": 855,
+      "room_code": "B1-025",
+      "instructor_id": "adel-thamer-shaher",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "RET2223-en-midday-2",
+      "day": "T",
+      "start_min": 780,
+      "end_min": 855,
+      "room_code": "B1-025",
+      "instructor_id": "adel-thamer-shaher",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "RET2223-both-morning-1",
+      "day": "Su",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "BG-027",
+      "instructor_id": "adel-thamer-shaher",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "RET2223-both-morning-1",
+      "day": "T",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "BG-027",
+      "instructor_id": "adel-thamer-shaher",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUAD3091-en-morning-1",
+      "day": "T",
+      "start_min": 600,
+      "end_min": 675,
+      "room_code": "B2-023",
+      "instructor_id": "abrar-maneef-rajab-a-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUAD3091-en-morning-1",
+      "day": "Th",
+      "start_min": 600,
+      "end_min": 675,
+      "room_code": "B2-023",
+      "instructor_id": "abrar-maneef-rajab-a-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUAD3091-both-morning-1",
+      "day": "Su",
+      "start_min": 600,
+      "end_min": 675,
+      "room_code": "BG-023",
+      "instructor_id": "ahmad-jaber-hadam-mayahi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUAD3091-both-morning-1",
+      "day": "W",
+      "start_min": 600,
+      "end_min": 675,
+      "room_code": "BG-023",
+      "instructor_id": "ahmad-jaber-hadam-mayahi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN4150-en-morning-1",
+      "day": "Su",
+      "start_min": 600,
+      "end_min": 675,
+      "room_code": "B1-027",
+      "instructor_id": "maria-ibrahim-ameen-al-sendah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN4150-en-morning-1",
+      "day": "T",
+      "start_min": 600,
+      "end_min": 675,
+      "room_code": "B1-027",
+      "instructor_id": "maria-ibrahim-ameen-al-sendah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN4150-both-morning-1",
+      "day": "Su",
+      "start_min": 870,
+      "end_min": 945,
+      "room_code": "B1-025",
+      "instructor_id": "anusha-zulfiqar-ali-shalwani",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUEN4150-both-morning-1",
+      "day": "Th",
+      "start_min": 870,
+      "end_min": 945,
+      "room_code": "B1-025",
+      "instructor_id": "anusha-zulfiqar-ali-shalwani",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8101-en-evening-1",
+      "day": "T",
+      "start_min": 1020,
+      "end_min": 1140,
+      "room_code": "B2-026",
+      "instructor_id": "tareq-ahmad-ali-al-zayyat",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8101-en-evening-1",
+      "day": "Th",
+      "start_min": 1020,
+      "end_min": 1140,
+      "room_code": "B2-026",
+      "instructor_id": "tareq-ahmad-ali-al-zayyat",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8101-en-midday-2",
+      "day": "T",
+      "start_min": 660,
+      "end_min": 780,
+      "room_code": "B2-026",
+      "instructor_id": "mennatullah-serajeldin-roushdy-ali",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8101-en-midday-2",
+      "day": "Th",
+      "start_min": 660,
+      "end_min": 780,
+      "room_code": "B2-026",
+      "instructor_id": "mennatullah-serajeldin-roushdy-ali",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8116-en-evening-1",
+      "day": "Su",
+      "start_min": 1020,
+      "end_min": 1095,
+      "room_code": "LAB-B2-032",
+      "instructor_id": "seyed-ghasem-saatchi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8116-en-evening-1",
+      "day": "W",
+      "start_min": 1020,
+      "end_min": 1095,
+      "room_code": "LAB-B2-032",
+      "instructor_id": "seyed-ghasem-saatchi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8116-en-midday-2",
+      "day": "Su",
+      "start_min": 660,
+      "end_min": 735,
+      "room_code": "LAB-B2-032",
+      "instructor_id": "murhaf-mohammad-abulees",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8116-en-midday-2",
+      "day": "W",
+      "start_min": 660,
+      "end_min": 735,
+      "room_code": "LAB-B2-032",
+      "instructor_id": "murhaf-mohammad-abulees",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8215-en-evening-1",
+      "day": "Su",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "LAB-B2-016",
+      "instructor_id": "sulaiman-mohammad-alraqum",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8215-en-evening-1",
+      "day": "W",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "LAB-B2-016",
+      "instructor_id": "sulaiman-mohammad-alraqum",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8215-en-midday-2",
+      "day": "Su",
+      "start_min": 660,
+      "end_min": 735,
+      "room_code": "LAB-B2-016",
+      "instructor_id": "ahmad-ismaeil-khaleel-al-qaed",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8215-en-midday-2",
+      "day": "Th",
+      "start_min": 660,
+      "end_min": 735,
+      "room_code": "LAB-B2-016",
+      "instructor_id": "ahmad-ismaeil-khaleel-al-qaed",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8300-en-evening-1",
+      "day": "M",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "B2-028",
+      "instructor_id": "bshaier-jasem-mohamad-al-buloshi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8300-en-evening-1",
+      "day": "W",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "B2-028",
+      "instructor_id": "bshaier-jasem-mohamad-al-buloshi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8300-en-midday-2",
+      "day": "Su",
+      "start_min": 870,
+      "end_min": 945,
+      "room_code": "B2-028",
+      "instructor_id": "talal-abdulaziz-m-al-mobailish",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8300-en-midday-2",
+      "day": "T",
+      "start_min": 870,
+      "end_min": 945,
+      "room_code": "B2-028",
+      "instructor_id": "talal-abdulaziz-m-al-mobailish",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8300-en-morning-3",
+      "day": "Su",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B2-029",
+      "instructor_id": "tareq-ahmad-ali-al-zayyat",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8300-en-morning-3",
+      "day": "T",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B2-029",
+      "instructor_id": "tareq-ahmad-ali-al-zayyat",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MAT8001-en-evening-1",
+      "day": "M",
+      "start_min": 1050,
+      "end_min": 1170,
+      "room_code": "B2-026",
+      "instructor_id": "roshdi-hussam-roshdi-al-debeki",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MAT8001-en-evening-1",
+      "day": "W",
+      "start_min": 1050,
+      "end_min": 1170,
+      "room_code": "B2-026",
+      "instructor_id": "roshdi-hussam-roshdi-al-debeki",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MAT8001-en-midday-2",
+      "day": "Su",
+      "start_min": 720,
+      "end_min": 840,
+      "room_code": "B1-024",
+      "instructor_id": "eisa-adel-hasan-shamsah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MAT8001-en-midday-2",
+      "day": "T",
+      "start_min": 720,
+      "end_min": 840,
+      "room_code": "B1-024",
+      "instructor_id": "eisa-adel-hasan-shamsah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MAT8001-en-morning-3",
+      "day": "T",
+      "start_min": 780,
+      "end_min": 900,
+      "room_code": "BG-026",
+      "instructor_id": "roshdi-hussam-roshdi-al-debeki",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MAT8001-en-morning-3",
+      "day": "Th",
+      "start_min": 780,
+      "end_min": 900,
+      "room_code": "BG-026",
+      "instructor_id": "roshdi-hussam-roshdi-al-debeki",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST2355-en-evening-1",
+      "day": "Su",
+      "start_min": 990,
+      "end_min": 1110,
+      "room_code": "B2-029",
+      "instructor_id": "maria-i-al-sendah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST2355-en-evening-1",
+      "day": "Th",
+      "start_min": 990,
+      "end_min": 1110,
+      "room_code": "B2-029",
+      "instructor_id": "maria-i-al-sendah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST2355-en-midday-2",
+      "day": "Su",
+      "start_min": 840,
+      "end_min": 960,
+      "room_code": "B2-029",
+      "instructor_id": "talal-abdulaziz-musaed-al-mobailish",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST2355-en-midday-2",
+      "day": "Th",
+      "start_min": 840,
+      "end_min": 960,
+      "room_code": "B2-029",
+      "instructor_id": "talal-abdulaziz-musaed-al-mobailish",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8102-en-evening-1",
+      "day": "T",
+      "start_min": 1020,
+      "end_min": 1140,
+      "room_code": "BG-025",
+      "instructor_id": "aya-mohamed-taha-mohamed",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8102-en-evening-1",
+      "day": "Th",
+      "start_min": 1020,
+      "end_min": 1140,
+      "room_code": "BG-025",
+      "instructor_id": "aya-mohamed-taha-mohamed",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8102-en-midday-2",
+      "day": "M",
+      "start_min": 840,
+      "end_min": 960,
+      "room_code": "B2-029",
+      "instructor_id": "reem-m-al-qenai",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8102-en-midday-2",
+      "day": "W",
+      "start_min": 840,
+      "end_min": 960,
+      "room_code": "B2-029",
+      "instructor_id": "reem-m-al-qenai",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8284-en-evening-1",
+      "day": "M",
+      "start_min": 1050,
+      "end_min": 1170,
+      "room_code": "B1-024",
+      "instructor_id": "ahad-al-otaibi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8284-en-evening-1",
+      "day": "Th",
+      "start_min": 1050,
+      "end_min": 1170,
+      "room_code": "B1-024",
+      "instructor_id": "ahad-al-otaibi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8284-en-midday-2",
+      "day": "Su",
+      "start_min": 720,
+      "end_min": 840,
+      "room_code": "BG-025",
+      "instructor_id": "ahad-al-otaibi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8284-en-midday-2",
+      "day": "W",
+      "start_min": 720,
+      "end_min": 840,
+      "room_code": "BG-025",
+      "instructor_id": "ahad-al-otaibi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST2234-en-evening-1",
+      "day": "T",
+      "start_min": 990,
+      "end_min": 1110,
+      "room_code": "B1-026",
+      "instructor_id": "sulaiman-mohammad-alraqum",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST2234-en-evening-1",
+      "day": "Th",
+      "start_min": 990,
+      "end_min": 1110,
+      "room_code": "B1-026",
+      "instructor_id": "sulaiman-mohammad-alraqum",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST2234-en-midday-2",
+      "day": "Su",
+      "start_min": 690,
+      "end_min": 810,
+      "room_code": "BG-023",
+      "instructor_id": "sulaiman-mohammad-alraqum",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST2234-en-midday-2",
+      "day": "T",
+      "start_min": 690,
+      "end_min": 810,
+      "room_code": "BG-023",
+      "instructor_id": "sulaiman-mohammad-alraqum",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST2335-en-evening-1",
+      "day": "T",
+      "start_min": 960,
+      "end_min": 1080,
+      "room_code": "B1-023",
+      "instructor_id": "mennatullah-serajeldin-roushdy-ali",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST2335-en-evening-1",
+      "day": "Th",
+      "start_min": 960,
+      "end_min": 1080,
+      "room_code": "B1-023",
+      "instructor_id": "mennatullah-serajeldin-roushdy-ali",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST2335-en-midday-2",
+      "day": "M",
+      "start_min": 720,
+      "end_min": 840,
+      "room_code": "B1-025",
+      "instructor_id": "mennatullah-serajeldin-roushdy-ali",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST2335-en-midday-2",
+      "day": "W",
+      "start_min": 720,
+      "end_min": 840,
+      "room_code": "B1-025",
+      "instructor_id": "mennatullah-serajeldin-roushdy-ali",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8109-en-evening-1",
+      "day": "T",
+      "start_min": 1020,
+      "end_min": 1140,
+      "room_code": "BG-024",
+      "instructor_id": "seyed-ghasem-saatchi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8109-en-evening-1",
+      "day": "Th",
+      "start_min": 1020,
+      "end_min": 1140,
+      "room_code": "BG-024",
+      "instructor_id": "seyed-ghasem-saatchi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8109-en-midday-2",
+      "day": "T",
+      "start_min": 660,
+      "end_min": 780,
+      "room_code": "BG-026",
+      "instructor_id": "seyed-ghasem-saatchi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8109-en-midday-2",
+      "day": "Th",
+      "start_min": 660,
+      "end_min": 780,
+      "room_code": "BG-026",
+      "instructor_id": "seyed-ghasem-saatchi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8283-en-evening-1",
+      "day": "Su",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "B2-006",
+      "instructor_id": "tareq-ahmad-ali-al-zayyat",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8283-en-evening-1",
+      "day": "W",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "B2-006",
+      "instructor_id": "tareq-ahmad-ali-al-zayyat",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8283-en-midday-2",
+      "day": "Su",
+      "start_min": 810,
+      "end_min": 885,
+      "room_code": "LAB-B2-032",
+      "instructor_id": "tareq-ahmad-ali-al-zayyat",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8283-en-midday-2",
+      "day": "W",
+      "start_min": 810,
+      "end_min": 885,
+      "room_code": "LAB-B2-032",
+      "instructor_id": "tareq-ahmad-ali-al-zayyat",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8288-en-evening-1",
+      "day": "Su",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "LAB-B2-032",
+      "instructor_id": "seyed-ghasem-saatchi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8288-en-evening-1",
+      "day": "W",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "LAB-B2-032",
+      "instructor_id": "seyed-ghasem-saatchi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8288-en-midday-2",
+      "day": "Su",
+      "start_min": 870,
+      "end_min": 945,
+      "room_code": "LAB-B2-015",
+      "instructor_id": "ahad-al-otaibi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8288-en-midday-2",
+      "day": "W",
+      "start_min": 870,
+      "end_min": 945,
+      "room_code": "LAB-B2-015",
+      "instructor_id": "ahad-al-otaibi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8276-en-evening-1",
+      "day": "Su",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "LAB-B2-031",
+      "instructor_id": "maria-i-al-sendah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8276-en-evening-1",
+      "day": "T",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "LAB-B2-031",
+      "instructor_id": "maria-i-al-sendah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8276-en-midday-2",
+      "day": "T",
+      "start_min": 750,
+      "end_min": 825,
+      "room_code": "LAB-B2-016",
+      "instructor_id": "maria-i-al-sendah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8276-en-midday-2",
+      "day": "Th",
+      "start_min": 750,
+      "end_min": 825,
+      "room_code": "LAB-B2-016",
+      "instructor_id": "maria-i-al-sendah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8277-en-evening-1",
+      "day": "Su",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "B2-004",
+      "instructor_id": "mennatullah-serajeldin-roushdy-ali",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8277-en-evening-1",
+      "day": "W",
+      "start_min": 1110,
+      "end_min": 1185,
+      "room_code": "B2-004",
+      "instructor_id": "mennatullah-serajeldin-roushdy-ali",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8277-en-midday-2",
+      "day": "Su",
+      "start_min": 870,
+      "end_min": 945,
+      "room_code": "B2-004",
+      "instructor_id": "seyed-ghasem-saatchi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8277-en-midday-2",
+      "day": "W",
+      "start_min": 870,
+      "end_min": 945,
+      "room_code": "B2-004",
+      "instructor_id": "seyed-ghasem-saatchi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8333-en-evening-1",
+      "day": "Su",
+      "start_min": 960,
+      "end_min": 1080,
+      "room_code": "B1-023",
+      "instructor_id": "sulaiman-mohammad-alraqum",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8333-en-evening-1",
+      "day": "W",
+      "start_min": 960,
+      "end_min": 1080,
+      "room_code": "B1-023",
+      "instructor_id": "sulaiman-mohammad-alraqum",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8333-en-midday-2",
+      "day": "M",
+      "start_min": 810,
+      "end_min": 930,
+      "room_code": "B2-026",
+      "instructor_id": "sulaiman-mohammad-alraqum",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8333-en-midday-2",
+      "day": "W",
+      "start_min": 810,
+      "end_min": 930,
+      "room_code": "B2-026",
+      "instructor_id": "sulaiman-mohammad-alraqum",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8334-en-evening-1",
+      "day": "M",
+      "start_min": 990,
+      "end_min": 1110,
+      "room_code": "BG-027",
+      "instructor_id": "adel-thamer-qseem-shaher",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8334-en-evening-1",
+      "day": "Th",
+      "start_min": 990,
+      "end_min": 1110,
+      "room_code": "BG-027",
+      "instructor_id": "adel-thamer-qseem-shaher",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8334-en-midday-2",
+      "day": "T",
+      "start_min": 660,
+      "end_min": 780,
+      "room_code": "BG-027",
+      "instructor_id": "aya-mohamed-taha-mohamed",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8334-en-midday-2",
+      "day": "Th",
+      "start_min": 660,
+      "end_min": 780,
+      "room_code": "BG-027",
+      "instructor_id": "aya-mohamed-taha-mohamed",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8117-en-morning-1",
+      "day": "Su",
+      "start_min": 570,
+      "end_min": 690,
+      "room_code": "B1-023",
+      "instructor_id": "tareq-ahmad-ali-al-zayyat",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8117-en-morning-1",
+      "day": "T",
+      "start_min": 570,
+      "end_min": 690,
+      "room_code": "B1-023",
+      "instructor_id": "tareq-ahmad-ali-al-zayyat",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8260-en-morning-1",
+      "day": "M",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "LAB-B2-031",
+      "instructor_id": "khaled-jamal-abdul-kareem-al-rabeea",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8260-en-morning-1",
+      "day": "Th",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "LAB-B2-031",
+      "instructor_id": "khaled-jamal-abdul-kareem-al-rabeea",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8279-en-morning-1",
+      "day": "Su",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "LAB-B2-031",
+      "instructor_id": "abrar-maneef-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8279-en-morning-1",
+      "day": "W",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "LAB-B2-031",
+      "instructor_id": "abrar-maneef-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8250-en-morning-1",
+      "day": "Su",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "LAB-B2-032",
+      "instructor_id": "abrar-maneef-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8250-en-morning-1",
+      "day": "W",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "LAB-B2-032",
+      "instructor_id": "abrar-maneef-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8253-en-morning-1",
+      "day": "Su",
+      "start_min": 810,
+      "end_min": 930,
+      "room_code": "BG-023",
+      "instructor_id": "mennatullah-serajeldin-roushdy-ali",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8253-en-morning-1",
+      "day": "T",
+      "start_min": 810,
+      "end_min": 930,
+      "room_code": "BG-023",
+      "instructor_id": "mennatullah-serajeldin-roushdy-ali",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8254-en-morning-1",
+      "day": "T",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B2-026",
+      "instructor_id": "murhaf-mohammad-abulees",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8254-en-morning-1",
+      "day": "Th",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B2-026",
+      "instructor_id": "murhaf-mohammad-abulees",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8318-en-morning-1",
+      "day": "T",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "LAB-B2-032",
+      "instructor_id": "abrar-maneef-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8318-en-morning-1",
+      "day": "Th",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "LAB-B2-032",
+      "instructor_id": "abrar-maneef-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8256-en-morning-1",
+      "day": "M",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "LAB-B2-032",
+      "instructor_id": "murhaf-mohammad-abulees",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8256-en-morning-1",
+      "day": "W",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "LAB-B2-032",
+      "instructor_id": "murhaf-mohammad-abulees",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8257-en-morning-1",
+      "day": "Su",
+      "start_min": 600,
+      "end_min": 675,
+      "room_code": "BG-025",
+      "instructor_id": "mennatullah-serajeldin-roushdy-ali",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8257-en-morning-1",
+      "day": "W",
+      "start_min": 600,
+      "end_min": 675,
+      "room_code": "BG-025",
+      "instructor_id": "mennatullah-serajeldin-roushdy-ali",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8258-en-morning-1",
+      "day": "Su",
+      "start_min": 870,
+      "end_min": 945,
+      "room_code": "B1-023",
+      "instructor_id": "khaled-jamal-abdul-kareem-al-rabeea",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8258-en-morning-1",
+      "day": "Th",
+      "start_min": 870,
+      "end_min": 945,
+      "room_code": "B1-023",
+      "instructor_id": "khaled-jamal-abdul-kareem-al-rabeea",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8259-en-morning-1",
+      "day": "Su",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "LAB-B2-016",
+      "instructor_id": "maria-i-al-sendah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8259-en-morning-1",
+      "day": "Th",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "LAB-B2-016",
+      "instructor_id": "maria-i-al-sendah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8265-en-morning-1",
+      "day": "M",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "B2-026",
+      "instructor_id": "khaled-jamal-abdul-kareem-al-rabeea",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8265-en-morning-1",
+      "day": "W",
+      "start_min": 570,
+      "end_min": 645,
+      "room_code": "B2-026",
+      "instructor_id": "khaled-jamal-abdul-kareem-al-rabeea",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8325-en-morning-1",
+      "day": "M",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B2-004",
+      "instructor_id": "mennatullah-serajeldin-roushdy-ali",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8325-en-morning-1",
+      "day": "W",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B2-004",
+      "instructor_id": "mennatullah-serajeldin-roushdy-ali",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "QUA2210-en-evening-1",
+      "day": "Su",
+      "start_min": 1050,
+      "end_min": 1170,
+      "room_code": "A2-147",
+      "instructor_id": "mohamad-ahmad-yousuf-dawaoud",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "QUA2210-en-evening-1",
+      "day": "T",
+      "start_min": 1050,
+      "end_min": 1170,
+      "room_code": "A2-147",
+      "instructor_id": "mohamad-ahmad-yousuf-dawaoud",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "QUA2210-en-midday-2",
+      "day": "Su",
+      "start_min": 1050,
+      "end_min": 1170,
+      "room_code": "A2-147",
+      "instructor_id": "mohamad-ahmad-yousuf-dawaoud",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "QUA2210-en-midday-2",
+      "day": "T",
+      "start_min": 1050,
+      "end_min": 1170,
+      "room_code": "A2-147",
+      "instructor_id": "mohamad-ahmad-yousuf-dawaoud",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "QUA2210-both-morning-1",
+      "day": "Su",
+      "start_min": 1050,
+      "end_min": 1170,
+      "room_code": "A2-147",
+      "instructor_id": "mohamad-ahmad-yousuf-dawaoud",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "QUA2210-both-morning-1",
+      "day": "T",
+      "start_min": 1050,
+      "end_min": 1170,
+      "room_code": "A2-147",
+      "instructor_id": "mohamad-ahmad-yousuf-dawaoud",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "FIN2230-en-evening-1",
+      "day": "M",
+      "start_min": 1050,
+      "end_min": 1170,
+      "room_code": "A2-147",
+      "instructor_id": "abrar-maneef-rajab-a-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "FIN2230-en-evening-1",
+      "day": "Th",
+      "start_min": 1050,
+      "end_min": 1170,
+      "room_code": "A2-147",
+      "instructor_id": "abrar-maneef-rajab-a-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "FIN2230-en-midday-2",
+      "day": "M",
+      "start_min": 1050,
+      "end_min": 1170,
+      "room_code": "A2-147",
+      "instructor_id": "abrar-maneef-rajab-a-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "FIN2230-en-midday-2",
+      "day": "Th",
+      "start_min": 1050,
+      "end_min": 1170,
+      "room_code": "A2-147",
+      "instructor_id": "abrar-maneef-rajab-a-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "FIN2230-both-morning-1",
+      "day": "M",
+      "start_min": 1050,
+      "end_min": 1170,
+      "room_code": "A2-147",
+      "instructor_id": "abrar-maneef-rajab-a-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "FIN2230-both-morning-1",
+      "day": "Th",
+      "start_min": 1050,
+      "end_min": 1170,
+      "room_code": "A2-147",
+      "instructor_id": "abrar-maneef-rajab-a-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2233-en-evening-1",
+      "day": "Su",
+      "start_min": 840,
+      "end_min": 960,
+      "room_code": "A2-147",
+      "instructor_id": "hussain-ali-hadi-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2233-en-evening-1",
+      "day": "T",
+      "start_min": 840,
+      "end_min": 960,
+      "room_code": "A2-147",
+      "instructor_id": "hussain-ali-hadi-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2233-en-midday-2",
+      "day": "Su",
+      "start_min": 840,
+      "end_min": 960,
+      "room_code": "A2-147",
+      "instructor_id": "hussain-ali-hadi-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2233-en-midday-2",
+      "day": "T",
+      "start_min": 840,
+      "end_min": 960,
+      "room_code": "A2-147",
+      "instructor_id": "hussain-ali-hadi-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2233-both-morning-1",
+      "day": "Su",
+      "start_min": 840,
+      "end_min": 960,
+      "room_code": "A2-147",
+      "instructor_id": "hussain-ali-hadi-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "ACC2233-both-morning-1",
+      "day": "T",
+      "start_min": 840,
+      "end_min": 960,
+      "room_code": "A2-147",
+      "instructor_id": "hussain-ali-hadi-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUAD3090-en-evening-1",
+      "day": "Su",
+      "start_min": 960,
+      "end_min": 1035,
+      "room_code": "A2-147",
+      "instructor_id": "anusha-zulfiqar-ali-shalwani",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUAD3090-en-evening-1",
+      "day": "T",
+      "start_min": 960,
+      "end_min": 1035,
+      "room_code": "A2-147",
+      "instructor_id": "anusha-zulfiqar-ali-shalwani",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUAD3090-en-midday-2",
+      "day": "Su",
+      "start_min": 960,
+      "end_min": 1035,
+      "room_code": "A2-147",
+      "instructor_id": "anusha-zulfiqar-ali-shalwani",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUAD3090-en-midday-2",
+      "day": "T",
+      "start_min": 960,
+      "end_min": 1035,
+      "room_code": "A2-147",
+      "instructor_id": "anusha-zulfiqar-ali-shalwani",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUMK3099-en-morning-1",
+      "day": "Su",
+      "start_min": 600,
+      "end_min": 675,
+      "room_code": "B2-023",
+      "instructor_id": "reem-m-al-qenai",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUMK3099-en-morning-1",
+      "day": "W",
+      "start_min": 600,
+      "end_min": 675,
+      "room_code": "B2-023",
+      "instructor_id": "reem-m-al-qenai",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUMT3030-en-evening-1",
+      "day": "M",
+      "start_min": 1020,
+      "end_min": 1095,
+      "room_code": "B1-004",
+      "instructor_id": "eisa-adel-hasan-h-shamsah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUMT3030-en-evening-1",
+      "day": "W",
+      "start_min": 1020,
+      "end_min": 1095,
+      "room_code": "B1-004",
+      "instructor_id": "eisa-adel-hasan-h-shamsah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUMT3030-en-midday-2",
+      "day": "M",
+      "start_min": 1020,
+      "end_min": 1095,
+      "room_code": "B1-004",
+      "instructor_id": "eisa-adel-hasan-h-shamsah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUMT3030-en-midday-2",
+      "day": "W",
+      "start_min": 1020,
+      "end_min": 1095,
+      "room_code": "B1-004",
+      "instructor_id": "eisa-adel-hasan-h-shamsah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUMT3030-both-morning-1",
+      "day": "M",
+      "start_min": 1020,
+      "end_min": 1095,
+      "room_code": "B1-004",
+      "instructor_id": "eisa-adel-hasan-h-shamsah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUMT3030-both-morning-1",
+      "day": "W",
+      "start_min": 1020,
+      "end_min": 1095,
+      "room_code": "B1-004",
+      "instructor_id": "eisa-adel-hasan-h-shamsah",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUMG3015-en-morning-1",
+      "day": "Su",
+      "start_min": 870,
+      "end_min": 945,
+      "room_code": "B2-023",
+      "instructor_id": "omar-jaber-radwan-aburumman",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUMG3015-en-morning-1",
+      "day": "T",
+      "start_min": 870,
+      "end_min": 945,
+      "room_code": "B2-023",
+      "instructor_id": "omar-jaber-radwan-aburumman",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2285-en-morning-1",
+      "day": "T",
+      "start_min": 480,
+      "end_min": 600,
+      "room_code": "B2-025",
+      "instructor_id": "omar-jaber-radwan-aburumman",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2285-en-morning-1",
+      "day": "Th",
+      "start_min": 480,
+      "end_min": 600,
+      "room_code": "B2-025",
+      "instructor_id": "omar-jaber-radwan-aburumman",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2208-en-morning-1",
+      "day": "Su",
+      "start_min": 840,
+      "end_min": 960,
+      "room_code": "B1-027",
+      "instructor_id": "abrar-maneef-rajab-a-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "MKT2208-en-morning-1",
+      "day": "W",
+      "start_min": 840,
+      "end_min": 960,
+      "room_code": "B1-027",
+      "instructor_id": "abrar-maneef-rajab-a-al-enezi",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUAC3100-en-morning-1",
+      "day": "M",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B2-026",
+      "instructor_id": "ahmad-ismaeil-khaleel-al-qaed",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "BUAC3100-en-morning-1",
+      "day": "W",
+      "start_min": 480,
+      "end_min": 555,
+      "room_code": "B2-026",
+      "instructor_id": "ahmad-ismaeil-khaleel-al-qaed",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8285-en-evening-1",
+      "day": "M",
+      "start_min": 960,
+      "end_min": 1035,
+      "room_code": "A2-147",
+      "instructor_id": "murhaf-mohammad-abulees",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8285-en-evening-1",
+      "day": "Th",
+      "start_min": 960,
+      "end_min": 1035,
+      "room_code": "A2-147",
+      "instructor_id": "murhaf-mohammad-abulees",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8285-en-midday-2",
+      "day": "M",
+      "start_min": 960,
+      "end_min": 1035,
+      "room_code": "A2-147",
+      "instructor_id": "murhaf-mohammad-abulees",
+      "pinned": false,
+      "source": "solver"
+    },
+    {
+      "section_id": "CST8285-en-midday-2",
+      "day": "Th",
+      "start_min": 960,
+      "end_min": 1035,
+      "room_code": "A2-147",
+      "instructor_id": "murhaf-mohammad-abulees",
+      "pinned": false,
+      "source": "solver"
+    }
+  ]
+}

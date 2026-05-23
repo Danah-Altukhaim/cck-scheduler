@@ -1,0 +1,14 @@
+{
+  "status": "FEASIBLE",
+  "feasible": true,
+  "units_total": 219,
+  "units_placed": 219,
+  "sections_total": 229,
+  "sections_placed": 229,
+  "assignments": 458,
+  "soft_penalty": 217,
+  "objective": 218783.0,
+  "best_bound": 218979.0,
+  "elapsed_ms": 300959,
+  "unplaced_unit_ids": []
+}

@@ -1,0 +1,35 @@
+{
+  "operatingDays": [
+    "Su",
+    "M",
+    "T",
+    "W",
+    "Th"
+  ],
+  "operatingWindow": {
+    "startMin": 480,
+    "endMin": 1190
+  },
+  "mondayBlock": {
+    "enabled": true,
+    "day": "M",
+    "startMin": 660,
+    "endMin": 720
+  },
+  "buckets": {
+    "morning": {
+      "startMin": 480,
+      "endMin": 720
+    },
+    "midday": {
+      "startMin": 660,
+      "endMin": 960
+    },
+    "evening": {
+      "startMin": 960,
+      "endMin": 1190
+    }
+  },
+  "workingStudentShare": 0.2,
+  "customRules": []
+}
