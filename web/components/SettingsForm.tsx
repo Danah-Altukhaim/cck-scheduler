@@ -1,10 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
-import { ArrowLeft } from 'lucide-react'
 import type { SchedulerConfig, Window } from '../lib/config'
+import { Button, useToast } from './ui'
 
 const ALL_DAYS = ['Sa', 'Su', 'M', 'T', 'W', 'Th'] as const
 
@@ -18,38 +17,52 @@ function hhmmToMin(s: string): number {
   return (h ?? 0) * 60 + (m ?? 0)
 }
 
-function TimeRange({
-  win,
-  onChange,
-}: {
-  win: Window
-  onChange: (w: Window) => void
-}) {
+function TimeRange({ win, onChange }: { win: Window; onChange: (w: Window) => void }) {
+  const invalid = win.endMin <= win.startMin
   return (
     <div className="flex items-center gap-2">
       <input
         type="time"
-        className="border border-cck-line rounded px-2 py-1 text-sm"
+        className="input"
+        style={{ width: 132 }}
         value={minToHHMM(win.startMin)}
         onChange={(e) => onChange({ ...win, startMin: hhmmToMin(e.target.value) })}
       />
-      <span className="text-cck-muted text-sm">to</span>
+      <span className="text-caption">to</span>
       <input
         type="time"
-        className="border border-cck-line rounded px-2 py-1 text-sm"
+        className="input"
+        style={{ width: 132, borderColor: invalid ? 'var(--danger)' : undefined }}
         value={minToHHMM(win.endMin)}
         onChange={(e) => onChange({ ...win, endMin: hhmmToMin(e.target.value) })}
       />
+      {invalid && <span className="field-error">End must be after start</span>}
     </div>
   )
 }
 
-function Row({ label, hint, children }: { label: string; hint?: string; children: React.ReactNode }) {
+function Row({
+  label,
+  hint,
+  children,
+  last,
+}: {
+  label: string
+  hint?: string
+  children: React.ReactNode
+  last?: boolean
+}) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-2 py-3 border-b border-cck-line last:border-0">
+    <div
+      className="grid grid-cols-1 md:grid-cols-3 gap-3"
+      style={{
+        padding: '16px 0',
+        borderBottom: last ? 'none' : '1px solid var(--line-soft)',
+      }}
+    >
       <div>
-        <div className="text-sm font-medium">{label}</div>
-        {hint && <div className="text-xs text-cck-muted mt-0.5">{hint}</div>}
+        <div className="text-body-sm" style={{ fontWeight: 600 }}>{label}</div>
+        {hint && <div className="text-caption" style={{ marginTop: 2 }}>{hint}</div>}
       </div>
       <div className="md:col-span-2">{children}</div>
     </div>
@@ -65,12 +78,19 @@ export function SettingsForm({
 }) {
   const [cfg, setCfg] = useState<SchedulerConfig>(initial)
   const [busy, setBusy] = useState(false)
-  const [msg, setMsg] = useState<{ text: string; ok: boolean } | null>(null)
   const router = useRouter()
+  const toast = useToast()
+
+  const dirty = useMemo(() => JSON.stringify(cfg) !== JSON.stringify(initial), [cfg, initial])
+  const hasErrors =
+    cfg.operatingWindow.endMin <= cfg.operatingWindow.startMin ||
+    cfg.buckets.morning.endMin <= cfg.buckets.morning.startMin ||
+    cfg.buckets.midday.endMin <= cfg.buckets.midday.startMin ||
+    cfg.buckets.evening.endMin <= cfg.buckets.evening.startMin ||
+    (cfg.mondayBlock.enabled && cfg.mondayBlock.endMin <= cfg.mondayBlock.startMin)
 
   async function save() {
     setBusy(true)
-    setMsg(null)
     try {
       const res = await fetch(`/api/config?schedule=${encodeURIComponent(scheduleId)}`, {
         method: 'PUT',
@@ -79,65 +99,80 @@ export function SettingsForm({
       })
       const data = (await res.json()) as { ok?: boolean; error?: string }
       if (!res.ok || !data.ok) throw new Error(data.error || 'Save failed')
-      setMsg({ text: 'Settings saved. They apply on the next solve.', ok: true })
+      toast.push({
+        title: 'Settings saved',
+        description: 'Changes apply on the next solver run.',
+        tone: 'success',
+      })
       router.refresh()
     } catch (e) {
-      setMsg({ text: e instanceof Error ? e.message : 'Save failed', ok: false })
+      toast.push({ title: 'Save failed', description: (e as Error).message, tone: 'error' })
     } finally {
       setBusy(false)
     }
   }
 
   return (
-    <div className="space-y-5">
-      <Link
-        href={`/s/${scheduleId}/constraints`}
-        className="inline-flex items-center gap-1 text-sm text-cck-muted hover:text-cck-ink"
-      >
-        <ArrowLeft className="h-4 w-4" /> Back to Set rules
-      </Link>
-      <header className="flex items-end justify-between">
-        <div>
-          <h1 className="text-2xl font-bold">Settings</h1>
-          <p className="text-sm text-cck-muted mt-1">
-            Term-wide knobs the solver reads on every run.
-          </p>
+    <main className="page">
+      <header className="page-header">
+        <div className="title-block">
+          <div className="eyebrow">Policy</div>
+          <h1>Term settings</h1>
+          <div className="sub">
+            Term-wide knobs the solver reads on every run. Changes here apply across all rules and stages.
+          </div>
         </div>
-        <button onClick={save} disabled={busy} className="btn-primary">
-          {busy ? 'Saving…' : 'Save settings'}
-        </button>
+        <div className="page-actions">
+          {dirty && (
+            <Button variant="secondary" onClick={() => setCfg(initial)} disabled={busy}>
+              Reset
+            </Button>
+          )}
+          <Button variant="primary" onClick={save} loading={busy} disabled={!dirty || hasErrors}>
+            Save settings
+          </Button>
+        </div>
       </header>
 
-      {msg && (
+      {dirty && (
         <div
-          className={`border rounded-md bg-white px-3 py-2 text-sm ${
-            msg.ok ? 'border-cck-line text-cck-muted' : 'border-cck-red text-cck-red'
-          }`}
+          className="card-flat flex items-center gap-3"
+          style={{
+            padding: '8px 14px',
+            marginBottom: 14,
+            background: 'var(--warn-soft)',
+            borderColor: 'var(--warn-strong)',
+            color: 'var(--warn)',
+          }}
         >
-          {msg.text}
+          <span className="text-body-sm">You have unsaved changes.</span>
         </div>
       )}
 
-      <div className="border border-cck-line rounded-md bg-white px-4">
-        <Row label="Operating days" hint="Days classes may be scheduled.">
-          <div className="flex flex-wrap gap-3">
-            {ALL_DAYS.map((d) => (
-              <label key={d} className="flex items-center gap-1.5 text-sm">
-                <input
-                  type="checkbox"
-                  checked={cfg.operatingDays.includes(d)}
-                  onChange={(e) =>
+      <div className="card" style={{ padding: '4px 20px' }}>
+        <Row label="Operating days" hint="Days the solver may place classes on.">
+          <div className="flex flex-wrap gap-1.5">
+            {ALL_DAYS.map((d) => {
+              const on = cfg.operatingDays.includes(d)
+              return (
+                <button
+                  key={d}
+                  type="button"
+                  onClick={() =>
                     setCfg({
                       ...cfg,
-                      operatingDays: e.target.checked
-                        ? [...cfg.operatingDays, d]
-                        : cfg.operatingDays.filter((x) => x !== d),
+                      operatingDays: on
+                        ? cfg.operatingDays.filter((x) => x !== d)
+                        : [...cfg.operatingDays, d],
                     })
                   }
-                />
-                {d}
-              </label>
-            ))}
+                  className={`badge ${on ? 'solid' : 'muted'}`}
+                  style={{ cursor: 'pointer', borderColor: on ? 'var(--ink)' : undefined, padding: '4px 10px' }}
+                >
+                  {d}
+                </button>
+              )
+            })}
           </div>
         </Row>
 
@@ -147,7 +182,7 @@ export function SettingsForm({
 
         <Row label="Reserved block" hint="A college-wide hold (e.g. Monday assembly).">
           <div className="flex flex-wrap items-center gap-3">
-            <label className="flex items-center gap-1.5 text-sm">
+            <label className="flex items-center gap-1.5 text-body-sm">
               <input
                 type="checkbox"
                 checked={cfg.mondayBlock.enabled}
@@ -155,19 +190,19 @@ export function SettingsForm({
                   setCfg({ ...cfg, mondayBlock: { ...cfg.mondayBlock, enabled: e.target.checked } })
                 }
               />
-              enabled
+              Enabled
             </label>
             <select
-              className="border border-cck-line rounded px-2 py-1 text-sm"
+              className="select"
+              style={{ width: 90 }}
               value={cfg.mondayBlock.day}
               onChange={(e) =>
                 setCfg({ ...cfg, mondayBlock: { ...cfg.mondayBlock, day: e.target.value } })
               }
+              disabled={!cfg.mondayBlock.enabled}
             >
               {ALL_DAYS.map((d) => (
-                <option key={d} value={d}>
-                  {d}
-                </option>
+                <option key={d} value={d}>{d}</option>
               ))}
             </select>
             <TimeRange
@@ -204,18 +239,20 @@ export function SettingsForm({
         <Row
           label="Working-student share"
           hint="Fraction of demand placed in evening sections (0–1)."
+          last
         >
           <input
             type="number"
             step="0.05"
             min="0"
             max="1"
-            className="border border-cck-line rounded px-2 py-1 text-sm w-28"
+            className="input"
+            style={{ width: 120 }}
             value={cfg.workingStudentShare}
             onChange={(e) => setCfg({ ...cfg, workingStudentShare: Number(e.target.value) })}
           />
         </Row>
       </div>
-    </div>
+    </main>
   )
 }

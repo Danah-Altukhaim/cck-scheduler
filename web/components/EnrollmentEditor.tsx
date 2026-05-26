@@ -1,10 +1,19 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
-import { ArrowLeft, Upload } from 'lucide-react'
+import { Pencil, Plus, Trash2, Upload, UserPlus } from 'lucide-react'
 import type { EnrollmentRecord } from '../lib/data'
+import {
+  Badge,
+  Button,
+  ConfirmDialog,
+  DataTable,
+  EmptyState,
+  Sheet,
+  useToast,
+  type Column,
+} from './ui'
 
 interface MajorOption {
   program_code: string
@@ -17,6 +26,14 @@ const LANGUAGES = [
   { value: 'ar', label: 'Arabic' },
 ]
 
+interface FormState {
+  major: string
+  language: string
+  working_student: boolean
+  puc: boolean
+  count: number
+}
+
 export function EnrollmentEditor({
   scheduleId,
   initialRows,
@@ -28,7 +45,7 @@ export function EnrollmentEditor({
 }) {
   const [rows, setRows] = useState<EnrollmentRecord[]>(initialRows)
   const [mode, setMode] = useState<null | 'new' | { edit: string }>(null)
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<FormState>({
     major: '',
     language: 'both',
     working_student: false,
@@ -36,16 +53,17 @@ export function EnrollmentEditor({
     count: 0,
   })
   const [busy, setBusy] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const [notice, setNotice] = useState<string | null>(null)
+  const [deleteTarget, setDeleteTarget] = useState<string | null>(null)
   const fileRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
+  const toast = useToast()
   const q = `?schedule=${encodeURIComponent(scheduleId)}`
+
+  const majorName = (code: string) => majors.find((m) => m.program_code === code)?.name ?? code
+  const total = rows.reduce((s, r) => s + (r.count || 0), 0)
 
   async function importFile(file: File) {
     setBusy(true)
-    setError(null)
-    setNotice(null)
     try {
       const fd = new FormData()
       fd.append('file', file)
@@ -55,17 +73,18 @@ export function EnrollmentEditor({
       const listRes = await fetch(`/api/enrollment${q}`)
       const listData = (await listRes.json()) as { rows?: EnrollmentRecord[] }
       setRows(listData.rows ?? [])
-      setNotice(`Imported ${data.imported ?? 0} enrollment row(s) from the sheet.`)
+      toast.push({
+        title: 'Enrollment imported',
+        description: `${data.imported ?? 0} row(s) loaded.`,
+        tone: 'success',
+      })
       router.refresh()
     } catch (e) {
-      setError(e instanceof Error ? e.message : 'Import failed')
+      toast.push({ title: 'Import failed', description: (e as Error).message, tone: 'error' })
     } finally {
       setBusy(false)
     }
   }
-
-  const majorName = (code: string) => majors.find((m) => m.program_code === code)?.name ?? code
-  const total = rows.reduce((s, r) => s + (r.count || 0), 0)
 
   function openNew() {
     setForm({
@@ -75,7 +94,6 @@ export function EnrollmentEditor({
       puc: true,
       count: 0,
     })
-    setError(null)
     setMode('new')
   }
 
@@ -87,13 +105,12 @@ export function EnrollmentEditor({
       puc: r.puc,
       count: r.count,
     })
-    setError(null)
     setMode({ edit: r.id })
   }
 
   async function save() {
+    if (!form.major || form.count < 0) return
     setBusy(true)
-    setError(null)
     try {
       const isNew = mode === 'new'
       const url = isNew ? `/api/enrollment${q}` : `/api/enrollment/${(mode as { edit: string }).edit}${q}`
@@ -105,50 +122,132 @@ export function EnrollmentEditor({
       const data = (await res.json()) as { row?: EnrollmentRecord; error?: string }
       if (!res.ok || !data.row) throw new Error(data.error || 'Save failed')
       setRows((prev) =>
-        isNew
-          ? [...prev, data.row!]
-          : prev.map((r) => (r.id === data.row!.id ? data.row! : r)),
+        isNew ? [...prev, data.row!] : prev.map((r) => (r.id === data.row!.id ? data.row! : r)),
       )
       setMode(null)
+      toast.push({ title: isNew ? 'Row added' : 'Row updated', tone: 'success' })
       router.refresh()
     } catch (e) {
-      setError(e instanceof Error ? e.message : 'Save failed')
+      toast.push({ title: 'Save failed', description: (e as Error).message, tone: 'error' })
     } finally {
       setBusy(false)
     }
   }
 
-  async function remove(id: string) {
-    if (!confirm('Delete this enrollment row?')) return
+  async function performDelete(id: string) {
     setBusy(true)
     try {
-      await fetch(`/api/enrollment/${id}${q}`, { method: 'DELETE' })
+      const res = await fetch(`/api/enrollment/${id}${q}`, { method: 'DELETE' })
+      if (!res.ok) throw new Error('Delete failed')
       setRows((prev) => prev.filter((r) => r.id !== id))
+      toast.push({ title: 'Row deleted', tone: 'success' })
       router.refresh()
+    } catch (e) {
+      toast.push({ title: 'Delete failed', description: (e as Error).message, tone: 'error' })
     } finally {
       setBusy(false)
+      setDeleteTarget(null)
     }
   }
 
-  return (
-    <div className="space-y-5">
-      <Link
-        href={`/s/${scheduleId}/inputs`}
-        className="inline-flex items-center gap-1 text-sm text-cck-muted hover:text-cck-ink"
-      >
-        <ArrowLeft className="h-4 w-4" /> Back to Set up inputs
-      </Link>
+  const columns: Column<EnrollmentRecord>[] = useMemo(
+    () => [
+      {
+        key: 'major',
+        header: 'Major',
+        sortable: true,
+        accessor: (r) => majorName(r.major),
+        render: (r) => <div style={{ fontWeight: 600 }}>{majorName(r.major)}</div>,
+      },
+      {
+        key: 'language',
+        header: 'Language',
+        sortable: true,
+        width: 110,
+        accessor: (r) => r.language,
+        render: (r) => (
+          <Badge tone="muted">
+            {LANGUAGES.find((l) => l.value === r.language)?.label ?? r.language}
+          </Badge>
+        ),
+      },
+      {
+        key: 'working',
+        header: 'Profile',
+        sortable: true,
+        width: 110,
+        accessor: (r) => (r.working_student ? 'working' : 'daytime'),
+        render: (r) => (
+          <Badge tone={r.working_student ? 'amber' : 'muted'}>
+            {r.working_student ? 'working' : 'daytime'}
+          </Badge>
+        ),
+      },
+      {
+        key: 'puc',
+        header: 'Funding',
+        sortable: true,
+        width: 110,
+        accessor: (r) => (r.puc ? 'puc' : 'self'),
+        render: (r) => <Badge tone="muted">{r.puc ? 'PUC' : 'self'}</Badge>,
+      },
+      {
+        key: 'count',
+        header: 'Students',
+        sortable: true,
+        align: 'right',
+        width: 90,
+        accessor: (r) => r.count,
+        render: (r) => <span className="tabular">{r.count}</span>,
+      },
+      {
+        key: '__actions',
+        header: '',
+        align: 'right',
+        width: 80,
+        render: (r) => (
+          <div className="row-action flex justify-end gap-1">
+            <Button
+              size="sm"
+              variant="ghost"
+              iconOnly
+              icon={<Pencil size={12} />}
+              aria-label="Edit"
+              onClick={(e) => {
+                e.stopPropagation()
+                openEdit(r)
+              }}
+            />
+            <Button
+              size="sm"
+              variant="ghost"
+              iconOnly
+              icon={<Trash2 size={12} />}
+              aria-label="Delete"
+              onClick={(e) => {
+                e.stopPropagation()
+                setDeleteTarget(r.id)
+              }}
+            />
+          </div>
+        ),
+      },
+    ],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [majors],
+  )
 
-      <header className="flex items-end justify-between">
-        <div>
-          <h1 className="text-2xl font-bold">Enrollment</h1>
-          <p className="text-sm text-cck-muted mt-1">
-            Projected students this term, by major and profile: {rows.length} row
-            {rows.length === 1 ? '' : 's'}, {total} students total. This drives how many sections
-            open.
-          </p>
+  return (
+    <main className="page">
+      <header className="page-header">
+        <div className="title-block">
+          <div className="eyebrow">Inputs</div>
+          <h1>Enrollment</h1>
+          <div className="sub">
+            Projected students this term, by major and profile · {rows.length} row{rows.length === 1 ? '' : 's'} · {total.toLocaleString()} students total. This drives how many sections open.
+          </div>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="page-actions">
           <input
             ref={fileRef}
             type="file"
@@ -160,90 +259,107 @@ export function EnrollmentEditor({
               e.target.value = ''
             }}
           />
-          <button
+          <Button
+            variant="secondary"
+            icon={<Upload size={14} />}
             onClick={() => fileRef.current?.click()}
             disabled={busy || mode !== null}
-            className="btn-secondary"
           >
-            <Upload className="h-4 w-4" /> Upload sheet
-          </button>
-          <button onClick={openNew} disabled={busy || mode !== null} className="btn-primary">
-            + Add enrollment
-          </button>
+            Import spreadsheet
+          </Button>
+          <Button variant="primary" icon={<Plus size={14} />} onClick={openNew} disabled={busy || mode !== null}>
+            Add enrollment
+          </Button>
         </div>
       </header>
 
-      {error && (
-        <div className="border border-cck-red rounded-md bg-white px-3 py-2 text-sm text-cck-red">
-          {error}
+      {rows.length === 0 ? (
+        <div className="card">
+          <EmptyState
+            icon={<UserPlus size={22} />}
+            title="No enrollment entered"
+            description="Until you add rows or upload a sheet, demand is estimated from the previous term's schedule."
+            actions={
+              <Button variant="primary" icon={<Plus size={14} />} onClick={openNew}>
+                Add first row
+              </Button>
+            }
+          />
         </div>
-      )}
-      {notice && (
-        <div className="border border-cck-line rounded-md bg-white px-3 py-2 text-sm text-cck-muted">
-          {notice}
-        </div>
+      ) : (
+        <DataTable
+          rows={rows}
+          columns={columns}
+          rowKey={(r) => r.id}
+          storageKey="enrollment"
+          defaultSortKey="major"
+          rowProps={(r) => ({
+            onClick: () => openEdit(r),
+            style: { cursor: 'pointer' },
+          })}
+        />
       )}
 
-      {mode !== null && (
-        <div className="card p-4 space-y-3">
-          <div className="font-semibold text-sm">
-            {mode === 'new' ? 'New enrollment row' : 'Edit enrollment row'}
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <label className="text-sm space-y-1 block">
-              <span className="text-cck-muted">Major</span>
-              <select
-                className="w-full border border-cck-line rounded-lg px-2 py-1.5 bg-white"
-                value={form.major}
-                onChange={(e) => setForm({ ...form, major: e.target.value })}
-              >
-                {majors.length === 0 && <option value="">(no majors)</option>}
-                {majors.map((m) => (
-                  <option key={m.program_code} value={m.program_code}>
-                    {m.name}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label className="text-sm space-y-1 block">
-              <span className="text-cck-muted">Language</span>
-              <select
-                className="w-full border border-cck-line rounded-lg px-2 py-1.5 bg-white"
-                value={form.language}
-                onChange={(e) => setForm({ ...form, language: e.target.value })}
-              >
+      <Sheet
+        open={mode !== null}
+        onClose={() => setMode(null)}
+        title={mode === 'new' ? 'New enrollment row' : 'Edit enrollment row'}
+        description="Each row says how many students of a given major/language profile to expect this term."
+        footer={
+          <>
+            <Button variant="secondary" onClick={() => setMode(null)} disabled={busy}>
+              Cancel
+            </Button>
+            <Button variant="primary" onClick={save} loading={busy} disabled={!form.major || form.count < 0}>
+              {mode === 'new' ? 'Add row' : 'Save changes'}
+            </Button>
+          </>
+        }
+      >
+        <div className="flex flex-col gap-4">
+          <label className="field">
+            <span className="field-label">Major</span>
+            <select className="select" value={form.major} onChange={(e) => setForm({ ...form, major: e.target.value })}>
+              {majors.length === 0 && <option value="">(no majors)</option>}
+              {majors.map((m) => (
+                <option key={m.program_code} value={m.program_code}>{m.name}</option>
+              ))}
+            </select>
+          </label>
+          <div className="grid grid-cols-2 gap-3">
+            <label className="field">
+              <span className="field-label">Language</span>
+              <select className="select" value={form.language} onChange={(e) => setForm({ ...form, language: e.target.value })}>
                 {LANGUAGES.map((l) => (
-                  <option key={l.value} value={l.value}>
-                    {l.label}
-                  </option>
+                  <option key={l.value} value={l.value}>{l.label}</option>
                 ))}
               </select>
             </label>
-            <label className="text-sm space-y-1 block">
-              <span className="text-cck-muted">Student count</span>
+            <label className="field">
+              <span className="field-label">Student count</span>
               <input
                 type="number"
                 min={0}
-                className="w-full border border-cck-line rounded-lg px-2 py-1.5"
+                className="input"
                 value={form.count}
                 onChange={(e) => setForm({ ...form, count: Number(e.target.value) })}
               />
             </label>
-            <label className="text-sm space-y-1 block">
-              <span className="text-cck-muted">Working students</span>
+            <label className="field">
+              <span className="field-label">Profile</span>
               <select
-                className="w-full border border-cck-line rounded-lg px-2 py-1.5 bg-white"
+                className="select"
                 value={form.working_student ? 'yes' : 'no'}
                 onChange={(e) => setForm({ ...form, working_student: e.target.value === 'yes' })}
               >
-                <option value="no">No (daytime students)</option>
-                <option value="yes">Yes (need evening sections)</option>
+                <option value="no">Daytime students</option>
+                <option value="yes">Working — need evening sections</option>
               </select>
             </label>
-            <label className="text-sm space-y-1 block">
-              <span className="text-cck-muted">Funding</span>
+            <label className="field">
+              <span className="field-label">Funding</span>
               <select
-                className="w-full border border-cck-line rounded-lg px-2 py-1.5 bg-white"
+                className="select"
                 value={form.puc ? 'puc' : 'self'}
                 onChange={(e) => setForm({ ...form, puc: e.target.value === 'puc' })}
               >
@@ -252,72 +368,21 @@ export function EnrollmentEditor({
               </select>
             </label>
           </div>
-          <div className="flex gap-2">
-            <button onClick={save} disabled={busy || !form.major} className="btn-primary">
-              {busy ? 'Saving…' : 'Save'}
-            </button>
-            <button onClick={() => setMode(null)} disabled={busy} className="btn-secondary">
-              Cancel
-            </button>
-          </div>
         </div>
-      )}
+      </Sheet>
 
-      <div className="card overflow-x-auto">
-        <table className="cck">
-          <thead>
-            <tr>
-              <th>Major</th>
-              <th>Language</th>
-              <th>Working</th>
-              <th>Funding</th>
-              <th className="num" style={{ textAlign: 'right' }}>Students</th>
-              <th style={{ textAlign: 'right' }}>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.length === 0 && (
-              <tr>
-                <td colSpan={6} className="text-sm text-cck-muted">
-                  No enrollment entered yet. Until you add rows, demand is estimated from last
-                  term&apos;s schedule.
-                </td>
-              </tr>
-            )}
-            {rows.map((r) => (
-              <tr key={r.id}>
-                <td className="font-medium">{majorName(r.major)}</td>
-                <td>{LANGUAGES.find((l) => l.value === r.language)?.label ?? r.language}</td>
-                <td>
-                  <span className={`badge ${r.working_student ? 'amber' : 'muted'}`}>
-                    {r.working_student ? 'working' : 'daytime'}
-                  </span>
-                </td>
-                <td>
-                  <span className="badge muted">{r.puc ? 'PUC' : 'self-funded'}</span>
-                </td>
-                <td className="num" style={{ textAlign: 'right' }}>{r.count}</td>
-                <td style={{ textAlign: 'right', whiteSpace: 'nowrap' }}>
-                  <button
-                    onClick={() => openEdit(r)}
-                    disabled={busy || mode !== null}
-                    className="text-sm text-cck-red hover:underline disabled:opacity-40"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => remove(r.id)}
-                    disabled={busy || mode !== null}
-                    className="text-sm text-cck-muted hover:underline ml-3 disabled:opacity-40"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+      <ConfirmDialog
+        open={!!deleteTarget}
+        onClose={() => setDeleteTarget(null)}
+        onConfirm={async () => {
+          if (deleteTarget) await performDelete(deleteTarget)
+        }}
+        title="Delete this enrollment row?"
+        description="The forecast for this group will be removed from the term plan."
+        confirmLabel="Delete"
+        tone="danger"
+        busy={busy}
+      />
+    </main>
   )
 }

@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { ArrowLeft, ExternalLink } from 'lucide-react'
+import { ExternalLink } from 'lucide-react'
+import { Badge } from '@/components/ui'
 
 export const dynamic = 'force-dynamic'
 
@@ -153,11 +154,17 @@ const ITEMS: PolicyItem[] = [
   },
 ]
 
-const BADGE: Record<Status, { label: string; cls: string }> = {
-  enforced: { label: 'Enforced', cls: 'badge green' },
-  editable: { label: 'Editable', cls: 'badge red' },
-  reference: { label: 'Reference', cls: 'badge muted' },
-  documented: { label: 'Documented', cls: 'badge muted' },
+const BADGE_TONE: Record<Status, 'green' | 'red' | 'amber' | 'muted'> = {
+  enforced: 'green',
+  editable: 'amber',
+  reference: 'muted',
+  documented: 'muted',
+}
+const BADGE_LABEL: Record<Status, string> = {
+  enforced: 'Enforced',
+  editable: 'Editable',
+  reference: 'Reference',
+  documented: 'Documented',
 }
 
 export default function PolicyPage({ params }: { params: { id: string } }) {
@@ -171,31 +178,29 @@ export default function PolicyPage({ params }: { params: { id: string } }) {
   )
 
   return (
-    <div className="space-y-6">
-      <Link
-        href={`${base}/constraints`}
-        className="inline-flex items-center gap-1 text-sm text-cck-muted hover:text-cck-ink"
-      >
-        <ArrowLeft className="h-4 w-4" /> Back to Set rules
-      </Link>
-      <header>
-        <h1 className="text-2xl font-bold">Schedule Process and Rules — coverage</h1>
-        <p className="text-sm text-cck-muted mt-1">
-          Every item from CCK&apos;s policy document, mapped to where it lives on this site.
-        </p>
-        <div className="flex flex-wrap gap-2 mt-3 text-sm">
-          <span className="badge green">{counts.enforced} enforced</span>
-          <span className="badge red">{counts.editable} editable</span>
-          <span className="badge muted">{counts.documented} documented</span>
-          <span className="badge muted">{counts.reference} reference</span>
+    <main className="page">
+      <header className="page-header">
+        <div className="title-block">
+          <div className="eyebrow">Policy</div>
+          <h1>Schedule Process and Rules — coverage</h1>
+          <div className="sub">
+            Every item from CCK&apos;s policy document, mapped to where it lives on this site.
+          </div>
         </div>
       </header>
 
-      <div className="border border-cck-line rounded-md bg-white overflow-hidden">
+      <div className="flex flex-wrap gap-2 mb-5">
+        <Badge tone="green" dot>{counts.enforced} enforced</Badge>
+        <Badge tone="amber" dot>{counts.editable} editable</Badge>
+        <Badge tone="muted" dot>{counts.documented} documented</Badge>
+        <Badge tone="muted" dot>{counts.reference} reference</Badge>
+      </div>
+
+      <div className="card-flat" style={{ overflow: 'auto' }}>
         <table className="cck">
           <thead>
             <tr>
-              <th style={{ width: 50 }}>#</th>
+              <th style={{ width: 44 }}>#</th>
               <th>Policy item</th>
               <th style={{ width: 110 }}>Status</th>
               <th style={{ width: 80 }}>Rule</th>
@@ -205,29 +210,30 @@ export default function PolicyPage({ params }: { params: { id: string } }) {
           <tbody>
             {ITEMS.map((it, i) => (
               <tr key={i}>
-                <td className="num text-cck-muted">{i + 1}</td>
+                <td className="num text-caption">{i + 1}</td>
                 <td>
                   <div>{it.doc}</div>
                   {it.note && (
-                    <div className="text-xs text-cck-muted mt-1">{it.note}</div>
+                    <div className="text-caption" style={{ marginTop: 4 }}>{it.note}</div>
                   )}
                 </td>
                 <td>
-                  <span className={BADGE[it.status].cls}>{BADGE[it.status].label}</span>
+                  <Badge tone={BADGE_TONE[it.status]} dot>{BADGE_LABEL[it.status]}</Badge>
                 </td>
                 <td>
-                  {it.rule ? <code className="text-xs">{it.rule}</code> : <span className="text-cck-muted">—</span>}
+                  {it.rule ? <span className="text-mono" style={{ fontSize: 12 }}>{it.rule}</span> : <span className="text-caption">—</span>}
                 </td>
                 <td>
                   {it.link ? (
                     <Link
                       href={`${base}${it.link.seg}`}
-                      className="text-sm text-cck-red hover:underline inline-flex items-center gap-1"
+                      style={{ color: 'var(--accent)', textDecoration: 'none', fontSize: 13, fontWeight: 500 }}
+                      className="inline-flex items-center gap-1"
                     >
-                      {it.link.label} <ExternalLink className="h-3 w-3" />
+                      {it.link.label} <ExternalLink size={11} />
                     </Link>
                   ) : (
-                    <span className="text-sm text-cck-muted">—</span>
+                    <span className="text-caption">—</span>
                   )}
                 </td>
               </tr>
@@ -235,6 +241,6 @@ export default function PolicyPage({ params }: { params: { id: string } }) {
           </tbody>
         </table>
       </div>
-    </div>
+    </main>
   )
 }

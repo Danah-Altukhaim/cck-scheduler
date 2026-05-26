@@ -1,8 +1,19 @@
 'use client'
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { Pencil, Plus, Trash2 } from 'lucide-react'
 import type { CustomRule, CustomRuleType } from '../lib/config'
+import {
+  Badge,
+  Button,
+  ConfirmDialog,
+  DataTable,
+  EmptyState,
+  Sheet,
+  useToast,
+  type Column,
+} from './ui'
 
 const ALL_DAYS = ['Sa', 'Su', 'M', 'T', 'W', 'Th']
 
@@ -13,8 +24,6 @@ interface ParamSpec {
   kind: ParamKind
 }
 
-// The constraint-type library. Each type maps to a CP-SAT constraint the
-// solver applies (see scripts/cp_solve.py).
 export const RULE_TYPES: Record<
   CustomRuleType,
   { label: string; kind: 'hard' | 'soft'; desc: string; params: ParamSpec[] }
@@ -108,6 +117,8 @@ export function CustomRulesEditor({
   scheduleId: string
 }) {
   const q = `schedule=${encodeURIComponent(scheduleId)}`
+  const router = useRouter()
+  const toast = useToast()
   const [rules, setRules] = useState<CustomRule[]>(initialRules)
   const [mode, setMode] = useState<null | 'new' | { edit: string }>(null)
   const [name, setName] = useState('')
@@ -115,8 +126,7 @@ export function CustomRulesEditor({
   const [enabled, setEnabled] = useState(true)
   const [params, setParams] = useState<Record<string, unknown>>({})
   const [busy, setBusy] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const router = useRouter()
+  const [deleteTarget, setDeleteTarget] = useState<CustomRule | null>(null)
 
   function defaultsFor(t: CustomRuleType): Record<string, unknown> {
     const p: Record<string, unknown> = {}
@@ -134,7 +144,6 @@ export function CustomRulesEditor({
     setType('instructor_unavailable')
     setEnabled(true)
     setParams(defaultsFor('instructor_unavailable'))
-    setError(null)
     setMode('new')
   }
 
@@ -143,7 +152,6 @@ export function CustomRulesEditor({
     setType(rule.type)
     setEnabled(rule.enabled)
     setParams({ ...rule.params })
-    setError(null)
     setMode({ edit: rule.id })
   }
 
@@ -154,7 +162,6 @@ export function CustomRulesEditor({
 
   async function save() {
     setBusy(true)
-    setError(null)
     try {
       const isNew = mode === 'new'
       const payload = { name, type, kind: RULE_TYPES[type].kind, enabled, params }
@@ -169,77 +176,225 @@ export function CustomRulesEditor({
       const data = (await res.json()) as { rule?: CustomRule; error?: string }
       if (!res.ok || !data.rule) throw new Error(data.error || 'Save failed')
       setRules((prev) =>
-        isNew
-          ? [...prev, data.rule!]
-          : prev.map((r) => (r.id === data.rule!.id ? data.rule! : r)),
+        isNew ? [...prev, data.rule!] : prev.map((r) => (r.id === data.rule!.id ? data.rule! : r)),
       )
       setMode(null)
+      toast.push({ title: isNew ? 'Rule added' : 'Rule updated', tone: 'success' })
       router.refresh()
     } catch (e) {
-      setError(e instanceof Error ? e.message : 'Save failed')
+      toast.push({ title: 'Save failed', description: (e as Error).message, tone: 'error' })
     } finally {
       setBusy(false)
     }
   }
 
-  async function remove(id: string) {
-    if (!confirm('Delete this rule?')) return
+  async function performDelete(r: CustomRule) {
     setBusy(true)
     try {
-      await fetch(`/api/rules/${id}?${q}`, { method: 'DELETE' })
-      setRules((prev) => prev.filter((r) => r.id !== id))
+      await fetch(`/api/rules/${r.id}?${q}`, { method: 'DELETE' })
+      setRules((prev) => prev.filter((x) => x.id !== r.id))
+      toast.push({ title: 'Rule deleted', tone: 'success' })
       router.refresh()
     } finally {
       setBusy(false)
+      setDeleteTarget(null)
     }
   }
 
   async function toggle(rule: CustomRule) {
     const next = { ...rule, enabled: !rule.enabled }
     setRules((prev) => prev.map((r) => (r.id === rule.id ? next : r)))
-    await fetch(`/api/rules/${rule.id}?${q}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ enabled: next.enabled }),
-    })
-    router.refresh()
+    try {
+      await fetch(`/api/rules/${rule.id}?${q}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ enabled: next.enabled }),
+      })
+      router.refresh()
+    } catch {
+      // revert
+      setRules((prev) => prev.map((r) => (r.id === rule.id ? rule : r)))
+      toast.push({ title: 'Could not save', tone: 'error' })
+    }
   }
 
+  async function setKind(rule: CustomRule, kind: 'hard' | 'soft') {
+    const next = { ...rule, kind }
+    setRules((prev) => prev.map((r) => (r.id === rule.id ? next : r)))
+    try {
+      await fetch(`/api/rules/${rule.id}?${q}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ kind }),
+      })
+      router.refresh()
+    } catch {
+      setRules((prev) => prev.map((r) => (r.id === rule.id ? rule : r)))
+    }
+  }
+
+  const columns: Column<CustomRule>[] = useMemo(
+    () => [
+      {
+        key: 'name',
+        header: 'Name',
+        sortable: true,
+        accessor: (r) => r.name,
+        render: (r) => (
+          <div>
+            <div style={{ fontWeight: 600 }}>{r.name}</div>
+            <div className="text-caption">{RULE_TYPES[r.type]?.label ?? r.type}</div>
+          </div>
+        ),
+      },
+      {
+        key: 'definition',
+        header: 'Definition',
+        render: (r) => <span className="text-mono" style={{ fontSize: 12 }}>{summarize(r)}</span>,
+      },
+      {
+        key: 'kind',
+        header: 'On failure',
+        width: 160,
+        sortable: true,
+        accessor: (r) => r.kind,
+        render: (r) => (
+          <select
+            className="select"
+            value={!r.enabled ? 'off' : r.kind === 'hard' ? 'required' : 'warning'}
+            onClick={(e) => e.stopPropagation()}
+            onChange={(e) => {
+              const v = e.target.value
+              if (v === 'off') void toggle(r)
+              else void setKind({ ...r, enabled: true }, v === 'required' ? 'hard' : 'soft')
+            }}
+            style={{ width: 130, fontSize: 12 }}
+          >
+            <option value="off">Off</option>
+            <option value="warning">Warning</option>
+            <option value="required">Required</option>
+          </select>
+        ),
+      },
+      {
+        key: 'enabled',
+        header: '',
+        width: 80,
+        align: 'right',
+        render: (r) => (
+          <Badge tone={r.enabled ? 'green' : 'muted'} dot>
+            {r.enabled ? 'on' : 'off'}
+          </Badge>
+        ),
+      },
+      {
+        key: '__actions',
+        header: '',
+        width: 70,
+        align: 'right',
+        render: (r) => (
+          <div className="row-action flex justify-end gap-1">
+            <Button
+              size="sm"
+              variant="ghost"
+              iconOnly
+              icon={<Pencil size={12} />}
+              aria-label="Edit"
+              onClick={(e) => {
+                e.stopPropagation()
+                openEdit(r)
+              }}
+            />
+            <Button
+              size="sm"
+              variant="ghost"
+              iconOnly
+              icon={<Trash2 size={12} />}
+              aria-label="Delete"
+              onClick={(e) => {
+                e.stopPropagation()
+                setDeleteTarget(r)
+              }}
+            />
+          </div>
+        ),
+      },
+    ],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  )
+
   return (
-    <section className="space-y-3">
-      <div className="flex items-end justify-between">
+    <section>
+      <div className="flex items-end justify-between mb-3">
         <div>
-          <h2 className="text-lg font-semibold">Custom rules</h2>
-          <p className="text-sm text-cck-muted">
-            {rules.length} custom rule{rules.length === 1 ? '' : 's'}, added to the built-ins above.
+          <h2 className="text-h2">Custom rules</h2>
+          <p className="text-caption" style={{ marginTop: 4 }}>
+            Schedule-specific constraints layered on top of the built-in catalog. Set <strong>On failure</strong> per rule:
+            <em> Off</em> — ignored, <em>Warning</em> — soft penalty in the objective, <em>Required</em> — hard block.
           </p>
         </div>
-        <button onClick={openNew} disabled={busy || mode !== null} className="btn-primary">
-          + Add rule
-        </button>
+        <Button variant="primary" icon={<Plus size={14} />} onClick={openNew}>
+          New custom rule
+        </Button>
       </div>
 
-      {error && (
-        <div className="border border-cck-red rounded-md bg-white px-3 py-2 text-sm text-cck-red">
-          {error}
+      {rules.length === 0 ? (
+        <div className="card-flat">
+          <EmptyState
+            title="No custom rules yet"
+            description="The built-in 14 hard + 9 soft rules below are always active. Add a custom rule to handle a one-off constraint."
+            actions={
+              <Button variant="primary" icon={<Plus size={14} />} onClick={openNew}>
+                Add a rule
+              </Button>
+            }
+          />
         </div>
+      ) : (
+        <DataTable
+          rows={rules}
+          columns={columns}
+          rowKey={(r) => r.id}
+          storageKey="custom-rules"
+          rowProps={(r) => ({
+            onClick: () => openEdit(r),
+            style: { cursor: 'pointer' },
+          })}
+        />
       )}
 
-      {mode !== null && (
-        <div className="border border-cck-line rounded-md bg-white p-4 space-y-3">
+      <Sheet
+        open={mode !== null}
+        onClose={() => setMode(null)}
+        title={mode === 'new' ? 'New custom rule' : 'Edit custom rule'}
+        description={RULE_TYPES[type]?.desc}
+        wide
+        footer={
+          <>
+            <Button variant="secondary" onClick={() => setMode(null)} disabled={busy}>Cancel</Button>
+            <Button variant="primary" onClick={save} loading={busy} disabled={!name.trim()}>
+              {mode === 'new' ? 'Add rule' : 'Save changes'}
+            </Button>
+          </>
+        }
+      >
+        <div className="flex flex-col gap-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <label className="text-sm space-y-1 block">
-              <span className="text-cck-muted">Rule name</span>
+            <label className="field">
+              <span className="field-label">Name</span>
               <input
-                className="w-full border border-cck-line rounded px-2 py-1"
+                className="input"
+                placeholder="e.g. Dr. Khalid not available Thursdays"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                autoFocus
               />
             </label>
-            <label className="text-sm space-y-1 block">
-              <span className="text-cck-muted">Constraint type</span>
+            <label className="field">
+              <span className="field-label">Constraint type</span>
               <select
-                className="w-full border border-cck-line rounded px-2 py-1"
+                className="select"
                 value={type}
                 disabled={mode !== 'new'}
                 onChange={(e) => changeType(e.target.value as CustomRuleType)}
@@ -252,45 +407,45 @@ export function CustomRulesEditor({
               </select>
             </label>
           </div>
-          <p className="text-xs text-cck-muted">{RULE_TYPES[type].desc}</p>
+          <div className="divider" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {RULE_TYPES[type].params.map((f) => (
-              <label key={f.name} className="text-sm space-y-1 block">
-                <span className="text-cck-muted">{f.label}</span>
+              <label key={f.name} className="field">
+                <span className="field-label">{f.label}</span>
                 {f.kind === 'days' ? (
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1">
                     {ALL_DAYS.map((d) => {
                       const arr = (params[f.name] as string[]) ?? []
+                      const on = arr.includes(d)
                       return (
-                        <label key={d} className="flex items-center gap-1 text-xs">
-                          <input
-                            type="checkbox"
-                            checked={arr.includes(d)}
-                            onChange={(e) =>
-                              setParams({
-                                ...params,
-                                [f.name]: e.target.checked
-                                  ? [...arr, d]
-                                  : arr.filter((x) => x !== d),
-                              })
-                            }
-                          />
+                        <button
+                          type="button"
+                          key={d}
+                          onClick={() =>
+                            setParams({
+                              ...params,
+                              [f.name]: on ? arr.filter((x) => x !== d) : [...arr, d],
+                            })
+                          }
+                          className={`badge ${on ? 'solid' : 'muted'}`}
+                          style={{ cursor: 'pointer', borderColor: on ? 'var(--ink)' : undefined }}
+                        >
                           {d}
-                        </label>
+                        </button>
                       )
                     })}
                   </div>
                 ) : f.kind === 'time' ? (
                   <input
                     type="time"
-                    className="w-full border border-cck-line rounded px-2 py-1"
+                    className="input"
                     value={minToHHMM((params[f.name] as number) ?? 0)}
                     onChange={(e) => setParams({ ...params, [f.name]: hhmmToMin(e.target.value) })}
                   />
                 ) : (
                   <input
                     type={f.kind === 'number' ? 'number' : 'text'}
-                    className="w-full border border-cck-line rounded px-2 py-1"
+                    className="input"
                     value={String(params[f.name] ?? '')}
                     onChange={(e) =>
                       setParams({
@@ -303,75 +458,27 @@ export function CustomRulesEditor({
               </label>
             ))}
           </div>
-          <label className="flex items-center gap-1.5 text-sm">
+          <label
+            className="flex items-center gap-2 text-body-sm"
+            style={{ marginTop: 8, padding: '8px 10px', background: 'var(--surface-2)', borderRadius: 'var(--radius-md)' }}
+          >
             <input type="checkbox" checked={enabled} onChange={(e) => setEnabled(e.target.checked)} />
-            enabled
+            Enabled — the solver applies this rule. Disable to suspend without deleting.
           </label>
-          <div className="flex gap-2">
-            <button onClick={save} disabled={busy} className="btn-primary">
-              {busy ? 'Saving…' : 'Save rule'}
-            </button>
-            <button onClick={() => setMode(null)} disabled={busy} className="btn-secondary">
-              Cancel
-            </button>
-          </div>
         </div>
-      )}
+      </Sheet>
 
-      <div className="border border-cck-line rounded-md bg-white overflow-x-auto">
-        <table className="cck">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Type</th>
-              <th>Kind</th>
-              <th>Definition</th>
-              <th>Enabled</th>
-              <th style={{ textAlign: 'right' }}>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rules.length === 0 && (
-              <tr>
-                <td colSpan={6} className="text-sm text-cck-muted">
-                  No custom rules yet. The 14 + 9 built-ins above are always active.
-                </td>
-              </tr>
-            )}
-            {rules.map((r) => (
-              <tr key={r.id}>
-                <td className="font-medium">{r.name}</td>
-                <td className="text-sm">{RULE_TYPES[r.type]?.label ?? r.type}</td>
-                <td>
-                  <span className={`badge ${r.kind === 'hard' ? 'red' : 'muted'}`}>{r.kind}</span>
-                </td>
-                <td className="text-sm">{summarize(r)}</td>
-                <td>
-                  <button onClick={() => toggle(r)} className="text-sm text-cck-red hover:underline">
-                    {r.enabled ? 'on' : 'off'}
-                  </button>
-                </td>
-                <td style={{ textAlign: 'right', whiteSpace: 'nowrap' }}>
-                  <button
-                    onClick={() => openEdit(r)}
-                    disabled={busy || mode !== null}
-                    className="text-sm text-cck-red hover:underline disabled:opacity-40"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => remove(r.id)}
-                    disabled={busy || mode !== null}
-                    className="text-sm text-cck-muted hover:underline ml-3 disabled:opacity-40"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <ConfirmDialog
+        open={!!deleteTarget}
+        onClose={() => setDeleteTarget(null)}
+        onConfirm={async () => {
+          if (deleteTarget) await performDelete(deleteTarget)
+        }}
+        title="Delete this custom rule?"
+        confirmLabel="Delete"
+        tone="danger"
+        busy={busy}
+      />
     </section>
   )
 }

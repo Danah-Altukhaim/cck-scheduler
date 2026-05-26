@@ -1,14 +1,11 @@
-import Link from 'next/link'
-import { CheckCircle2, ArrowRight, ArrowLeft, Clock } from 'lucide-react'
 import { getTermPlan, getSchedule, getScheduleMtime } from '@/lib/data'
 import { getConfig } from '@/lib/config'
-import { SolveButton } from '../SolveButton'
+import { GenerateView } from './GenerateView'
 
 export const dynamic = 'force-dynamic'
 
 export default function GeneratePage({ params }: { params: { id: string } }) {
   const sid = params.id
-  const base = `/s/${sid}`
   const plan = getTermPlan(sid)
   const sched = getSchedule(sid)
   const config = getConfig(sid)
@@ -17,78 +14,89 @@ export default function GeneratePage({ params }: { params: { id: string } }) {
   const placed = new Set(sched.assignments.map((a) => a.section_id)).size
   const total = plan.sections.length
   const hasResult = sched.assignments.length > 0
+  const totalIssues = (plan.reports ?? []).reduce((sum, r) => sum + (r.warnings?.length ?? 0), 0)
+
+  type StatusKey = 'ok' | 'warn' | 'error'
+  const preflight: { label: string; status: StatusKey; detail: string; hint?: string; href?: string }[] = [
+    {
+      label: 'Courses',
+      status: plan.courses.length > 0 ? 'ok' : 'error',
+      detail: `${plan.courses.length} loaded`,
+      hint: plan.courses.length === 0 ? 'Add or import at least one course.' : undefined,
+      href: `/s/${sid}/courses`,
+    },
+    {
+      label: 'Instructors',
+      status: plan.instructors.length > 0 ? 'ok' : 'error',
+      detail: `${plan.instructors.length} loaded`,
+      hint:
+        plan.instructors.length === 0
+          ? 'Add or import instructors.'
+          : `${plan.instructors.filter((i) => i.status === 'active').length} active`,
+      href: `/s/${sid}/instructors`,
+    },
+    {
+      label: 'Rooms',
+      status: plan.rooms.length > 0 ? 'ok' : 'error',
+      detail: `${plan.rooms.length} loaded`,
+      hint: plan.rooms.length === 0 ? 'Add or import rooms.' : undefined,
+      href: `/s/${sid}/rooms`,
+    },
+    {
+      label: 'Enrollment forecast',
+      status: (plan.enrollment ?? []).length > 0 ? 'ok' : 'warn',
+      detail: `${(plan.enrollment ?? []).length} rows`,
+      hint:
+        (plan.enrollment ?? []).length === 0
+          ? 'No enrollment data — Stage 1 will estimate demand from last term.'
+          : `${(plan.enrollment ?? []).reduce((s, r) => s + r.count, 0)} students total`,
+      href: `/s/${sid}/enrollment`,
+    },
+    {
+      label: 'Majors',
+      status: plan.majors.length > 0 ? 'ok' : 'warn',
+      detail: `${plan.majors.length} sheets`,
+      hint:
+        plan.majors.length === 0
+          ? 'No major sheets — cohort no-conflict rule (H6) is inert without them.'
+          : undefined,
+      href: `/s/${sid}/majors`,
+    },
+    {
+      label: 'Custom rules',
+      status: 'ok',
+      detail: `${config.customRules.filter((r) => r.enabled).length} enabled · ${config.customRules.length} total`,
+      href: `/s/${sid}/rules`,
+    },
+    {
+      label: 'Operating window',
+      status: 'ok',
+      detail: `${config.operatingDays.join(' / ')} · ${Math.floor(config.operatingWindow.startMin / 60)}:${String(config.operatingWindow.startMin % 60).padStart(2, '0')}–${Math.floor(config.operatingWindow.endMin / 60)}:${String(config.operatingWindow.endMin % 60).padStart(2, '0')}`,
+      href: `/s/${sid}/settings`,
+    },
+    {
+      label: 'Data issues',
+      status: totalIssues > 0 ? 'warn' : 'ok',
+      detail: `${totalIssues} warning${totalIssues === 1 ? '' : 's'} from ingest`,
+      hint: totalIssues > 0 ? 'Warnings won\'t block the solver but may indicate data drift.' : undefined,
+      href: `/s/${sid}/issues`,
+    },
+  ]
 
   const stats = [
+    { label: 'Sections to place', value: plan.sections.length, hint: 'opened by Stage 1' },
     { label: 'Courses', value: plan.courses.length },
-    { label: 'Instructors', value: plan.instructors.length },
+    { label: 'Instructors', value: plan.instructors.length, hint: `${plan.instructors.filter((i) => i.status === 'active').length} active` },
     { label: 'Rooms', value: plan.rooms.length },
-    { label: 'Custom rules', value: config.customRules.filter((r) => r.enabled).length },
   ]
 
   return (
-    <div className="space-y-7">
-      <header>
-        <div className="text-xs font-semibold text-cck-green uppercase tracking-wide">Step 3 of 4</div>
-        <h1 className="text-3xl font-bold mt-1.5">Generate the schedule</h1>
-        <p className="text-[15px] text-cck-muted mt-1.5 max-w-2xl">
-          The solver places every course into a room, an instructor, and a time slot while
-          respecting your rules.
-        </p>
-      </header>
-
-      <section className="space-y-2">
-        <div className="text-xs font-semibold text-cck-muted uppercase tracking-wide">
-          What will be scheduled
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {stats.map((s) => (
-            <div key={s.label} className="kpi">
-              <div className="label">{s.label}</div>
-              <div className="value">{s.value}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <div className="card p-6 space-y-4">
-        <div>
-          <div className="font-semibold text-[15px]">Ready to generate</div>
-          <p className="text-sm text-cck-muted mt-1 flex items-center gap-1.5">
-            <Clock className="h-3.5 w-3.5" />
-            This usually takes ~5 minutes. You can leave this page; the solve keeps running.
-          </p>
-        </div>
-        <SolveButton scheduleId={sid} />
-      </div>
-
-      {hasResult && (
-        <div className="card p-5 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <CheckCircle2 className="h-9 w-9" style={{ color: '#1f7a3d' }} />
-            <div>
-              <div className="font-semibold">
-                {placed === total
-                  ? `All ${total} sections placed`
-                  : `${placed} of ${total} sections placed`}
-              </div>
-              <div className="text-sm text-cck-muted">
-                {mtime
-                  ? `Generated ${mtime.toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' })}`
-                  : 'A schedule is ready'}
-              </div>
-            </div>
-          </div>
-          <Link href={`${base}/schedule`} className="btn-primary">
-            View the schedule <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-      )}
-
-      <div className="border-t border-cck-line pt-5">
-        <Link href={`${base}/constraints`} className="btn-secondary">
-          <ArrowLeft className="h-4 w-4" /> Back
-        </Link>
-      </div>
-    </div>
+    <GenerateView
+      scheduleId={sid}
+      preflight={preflight}
+      stats={stats}
+      result={{ placed, total, hasResult }}
+      lastSolvedAt={mtime ? mtime.toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' }) : null}
+    />
   )
 }

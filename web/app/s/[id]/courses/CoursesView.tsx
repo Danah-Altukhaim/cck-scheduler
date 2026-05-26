@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react'
 import { EntityEditor, type FieldSpec } from '@/components/EntityEditor'
+import { StaticTabs } from '@/components/ui'
 
 type Row = Record<string, unknown>
 
@@ -13,15 +14,6 @@ interface Props {
 
 type Filter = 'all' | 'lecture' | 'lab' | 'lecture+lab'
 
-const FILTERS: { key: Filter; label: string }[] = [
-  { key: 'all', label: 'All' },
-  { key: 'lecture', label: 'Lectures' },
-  { key: 'lab', label: 'Labs' },
-  { key: 'lecture+lab', label: 'Lecture + lab (CP / IAWD)' },
-]
-
-// Client-side wrapper around EntityEditor that adds a Lecture / Lab tab filter
-// and a contextual note for the CP / IAWD pattern.
 export function CoursesView({ scheduleId, fields, initialRows }: Props) {
   const [filter, setFilter] = useState<Filter>('all')
 
@@ -40,31 +32,38 @@ export function CoursesView({ scheduleId, fields, initialRows }: Props) {
   }, [initialRows, filter])
 
   return (
-    <div className="space-y-3">
-      <div className="flex flex-wrap items-center gap-2 text-sm">
-        <span className="text-cck-muted">Show:</span>
-        {FILTERS.map((f) => (
-          <button
-            key={f.key}
-            onClick={() => setFilter(f.key)}
-            className={
-              filter === f.key
-                ? 'badge red'
-                : 'badge muted hover:bg-cck-line-soft transition-colors'
-            }
-            style={{ cursor: 'pointer', border: 'none' }}
-          >
-            {f.label} · {counts[f.key]}
-          </button>
-        ))}
+    <div>
+      <div style={{ padding: '0 28px', marginTop: -10, marginBottom: 6 }}>
+        <StaticTabs<Filter>
+          value={filter}
+          onChange={setFilter}
+          items={[
+            { value: 'all', label: 'All', count: counts.all },
+            { value: 'lecture', label: 'Lectures', count: counts.lecture },
+            { value: 'lab', label: 'Labs', count: counts.lab },
+            { value: 'lecture+lab', label: 'Lecture + lab (CP / IAWD)', count: counts['lecture+lab'] },
+          ]}
+        />
       </div>
 
       {filter === 'lecture+lab' && (
-        <div className="border border-cck-line rounded-md bg-white px-3 py-2 text-sm text-cck-muted">
-          <strong className="text-cck-ink">CP and IAWD courses</strong> follow the
-          4-credit split: 2 h lecture + 2 h lab. Use{' '}
-          <code className="text-xs">type = lecture+lab</code> and{' '}
-          <code className="text-xs">lecture_pattern = lab+lecture</code>.
+        <div style={{ padding: '0 28px' }}>
+          <div
+            className="card-flat"
+            style={{
+              padding: '10px 14px',
+              marginTop: 6,
+              marginBottom: 12,
+              background: 'var(--info-soft)',
+              borderColor: 'var(--info-strong)',
+            }}
+          >
+            <span className="text-body-sm">
+              <strong>CP and IAWD courses</strong> follow the 4-credit split: 2 h lecture + 2 h lab.
+              Use <code className="text-mono">type = lecture+lab</code> and{' '}
+              <code className="text-mono">lecture_pattern = lab+lecture</code>.
+            </span>
+          </div>
         </div>
       )}
 
@@ -73,7 +72,7 @@ export function CoursesView({ scheduleId, fields, initialRows }: Props) {
         type="courses"
         idField="code"
         title="Courses"
-        subtitle="the catalog Stage 1 opens sections from · teaching_hours is optional (defaults to credits)"
+        subtitle="catalog Stage 1 opens sections from"
         fields={fields}
         initialRows={rows}
       />
