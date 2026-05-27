@@ -2,6 +2,8 @@
 
 import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { useRouter } from 'next/navigation'
+
+const SIDEBAR_COLLAPSED_KEY = 'cck.sidebar.collapsed'
 import {
   LayoutDashboard,
   CalendarRange,
@@ -59,6 +61,23 @@ export function AppShell({
 }: AppShellProps) {
   const router = useRouter()
   const [paletteOpen, setPaletteOpen] = useState(false)
+  const [collapsed, setCollapsed] = useState(false)
+
+  useEffect(() => {
+    try {
+      setCollapsed(window.localStorage.getItem(SIDEBAR_COLLAPSED_KEY) === '1')
+    } catch {}
+  }, [])
+
+  function toggleSidebar() {
+    setCollapsed((c) => {
+      const next = !c
+      try {
+        window.localStorage.setItem(SIDEBAR_COLLAPSED_KEY, next ? '1' : '0')
+      } catch {}
+      return next
+    })
+  }
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -123,8 +142,14 @@ export function AppShell({
   )
 
   return (
-    <div className="app-shell">
-      <Sidebar scheduleId={scheduleId} counts={counts} ready={ready} />
+    <div className={`app-shell${collapsed ? ' sidebar-collapsed' : ''}`}>
+      <Sidebar
+        scheduleId={scheduleId}
+        counts={counts}
+        ready={ready}
+        collapsed={collapsed}
+        onToggle={toggleSidebar}
+      />
       <Topbar
         schedule={schedule}
         schedules={schedules}

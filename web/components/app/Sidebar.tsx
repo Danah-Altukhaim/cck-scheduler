@@ -18,6 +18,8 @@ import {
   History,
   AlertTriangle,
   FileCheck2,
+  PanelLeftClose,
+  PanelLeftOpen,
   type LucideIcon,
 } from 'lucide-react'
 import type { ReactNode } from 'react'
@@ -52,11 +54,15 @@ export function Sidebar({
   scheduleId,
   counts,
   ready,
+  collapsed = false,
+  onToggle,
 }: {
   scheduleId: string
   counts: SidebarCount
   /** True if inputs look complete enough to solve. Styles the Generate CTA. */
   ready: boolean
+  collapsed?: boolean
+  onToggle?: () => void
 }) {
   const pathname = usePathname() ?? ''
   const base = `/s/${scheduleId}`
@@ -100,27 +106,34 @@ export function Sidebar({
   ]
 
   return (
-    <nav className="sidebar" aria-label="Schedule navigation">
-      <Link href="/" className="flex items-center gap-2 px-2 pb-3" style={{ textDecoration: 'none' }}>
-        <span
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: 26,
-            height: 26,
-            background: 'var(--cck-green)',
-            color: 'white',
-            borderRadius: 6,
-            fontWeight: 800,
-            fontSize: 11,
-            letterSpacing: '0.04em',
-          }}
+    <nav
+      className={`sidebar${collapsed ? ' collapsed' : ''}`}
+      aria-label="Schedule navigation"
+      data-collapsed={collapsed || undefined}
+    >
+      <div className="sidebar-header">
+        <Link
+          href="/"
+          className="sidebar-brand"
+          style={{ textDecoration: 'none' }}
+          title={collapsed ? 'AI Scheduler' : undefined}
         >
-          CCK
-        </span>
-        <span style={{ fontWeight: 700, fontSize: 13, color: 'var(--ink)' }}>AI Scheduler</span>
-      </Link>
+          <span className="sidebar-brand-badge">CCK</span>
+          <span className="sidebar-brand-label">AI Scheduler</span>
+        </Link>
+        {onToggle && (
+          <button
+            type="button"
+            onClick={onToggle}
+            className="sidebar-toggle"
+            aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+            aria-expanded={!collapsed}
+            title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+          >
+            {collapsed ? <PanelLeftOpen size={14} /> : <PanelLeftClose size={14} />}
+          </button>
+        )}
+      </div>
 
       {groups.map((g) => (
         <div key={g.label}>
@@ -140,9 +153,11 @@ export function Sidebar({
                 href={it.href}
                 className={`sidebar-item ${active ? 'active' : ''}`.trim()}
                 style={isGenerateCta && !active ? { color: 'var(--accent)', fontWeight: 600 } : undefined}
+                title={collapsed ? it.label : undefined}
+                aria-label={collapsed ? it.label : undefined}
               >
                 <Icon className="icon" />
-                <span>{it.label}</span>
+                <span className="sidebar-item-label">{it.label}</span>
                 {it.badge}
                 {typeof it.count === 'number' && it.count > 0 && (
                   <span className="count">{it.count}</span>
@@ -153,9 +168,16 @@ export function Sidebar({
         </div>
       ))}
 
-      <div style={{ marginTop: 'auto', padding: '12px 4px 4px' }}>
-        <Link href="/" className="sidebar-item" style={{ color: 'var(--muted)', fontSize: 12 }}>
-          ← All schedules
+      <div className="sidebar-footer">
+        <Link
+          href="/"
+          className="sidebar-item"
+          style={{ color: 'var(--muted)', fontSize: 12 }}
+          title={collapsed ? 'All schedules' : undefined}
+          aria-label={collapsed ? 'All schedules' : undefined}
+        >
+          <span className="sidebar-footer-arrow">←</span>
+          <span className="sidebar-item-label">All schedules</span>
         </Link>
       </div>
     </nav>
