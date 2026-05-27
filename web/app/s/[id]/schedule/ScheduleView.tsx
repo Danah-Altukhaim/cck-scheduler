@@ -4,7 +4,6 @@ import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react
 import {
   Calendar as CalendarIcon,
   List as ListIcon,
-  Building2,
   Filter,
   Search,
   Download,
@@ -25,15 +24,22 @@ import type {
   Assignment,
   Course,
   Instructor,
+  MajorSheet,
   Room,
   Section,
 } from '@/lib/data'
-import { Segment } from '@/components/ui/Segment'
 import { StaticTabs } from '@/components/ui/Tabs'
 import { Sheet } from '@/components/ui/Sheet'
 import { Button } from '@/components/ui/Button'
 import { Badge, StatusIcon } from '@/components/ui/Badge'
 import { EmptyState } from '@/components/ui/EmptyState'
+
+export interface ReservedBlock {
+  enabled: boolean
+  day: string
+  startMin: number
+  endMin: number
+}
 
 export interface ScheduleViewProps {
   scheduleId: string
@@ -41,12 +47,15 @@ export interface ScheduleViewProps {
   instructors: Instructor[]
   courses: Course[]
   sections: Section[]
+  majors: MajorSheet[]
   assignments: Assignment[]
   termLabel: string
+  reservedBlock?: ReservedBlock
 }
 
-type ViewMode = 'calendar' | 'list' | 'rooms'
+type ViewMode = 'calendar' | 'list'
 type ColorBy = 'department' | 'instructor' | 'room' | 'language'
+type GroupBy = 'none' | 'cohort' | 'instructor' | 'room' | 'course'
 
 interface FilterState {
   search: string
@@ -58,6 +67,7 @@ interface FilterState {
   colorBy: ColorBy
   density: 'cozy' | 'compact'
   view: ViewMode
+  groupBy: GroupBy
 }
 
 const DEFAULT_FILTERS: FilterState = {
@@ -70,6 +80,7 @@ const DEFAULT_FILTERS: FilterState = {
   colorBy: 'department',
   density: 'cozy',
   view: 'calendar',
+  groupBy: 'none',
 }
 
 // Stable color palette for color-by ramp.
@@ -89,7 +100,7 @@ function rampColor(key: string): string {
 }
 
 export function ScheduleView(props: ScheduleViewProps) {
-  const { rooms, instructors, courses, sections, assignments, scheduleId } = props
+  const { rooms, instructors, courses, sections, majors, assignments, scheduleId, reservedBlock } = props
   const [filters, setFilters] = useState<FilterState>(DEFAULT_FILTERS)
   const [openAssignment, setOpenAssignment] = useState<Assignment | null>(null)
   const [showFilters, setShowFilters] = useState(false)
@@ -101,6 +112,7 @@ export function ScheduleView(props: ScheduleViewProps) {
     const next: Partial<FilterState> = {}
     if (u.searchParams.get('q')) next.search = u.searchParams.get('q')!
     if (u.searchParams.get('view')) next.view = u.searchParams.get('view') as ViewMode
+    if (u.searchParams.get('group')) next.groupBy = u.searchParams.get('group') as GroupBy
     if (u.searchParams.get('color')) next.colorBy = u.searchParams.get('color') as ColorBy
     if (u.searchParams.get('density')) next.density = u.searchParams.get('density') as 'cozy' | 'compact'
     if (u.searchParams.get('bucket')) next.bucket = u.searchParams.get('bucket') as FilterState['bucket']
@@ -122,6 +134,7 @@ export function ScheduleView(props: ScheduleViewProps) {
     }
     set('q', filters.search.trim() || null)
     set('view', filters.view === 'calendar' ? null : filters.view)
+    set('group', filters.groupBy === 'none' ? null : filters.groupBy)
     set('color', filters.colorBy === 'department' ? null : filters.colorBy)
     set('density', filters.density === 'cozy' ? null : filters.density)
     set('bucket', filters.bucket === 'all' ? null : filters.bucket)
@@ -140,6 +153,34 @@ export function ScheduleView(props: ScheduleViewProps) {
     () => Array.from(new Set(instructors.map((i) => i.department).filter(Boolean))).sort(),
     [instructors],
   )
+
+  // section_id → [{ key, label }] for cohort grouping. A section can belong to
+  // multiple (program, semester) cohorts (shared/elective courses) and will
+  // appear in each.
+  const cohortsBySection = useMemo(() => {
+    const sectionsByCourse = new Map<string, Section[]>()
+    for (const s of sections) {
+      const list = sectionsByCourse.get(s.course_code) ?? []
+      list.push(s)
+      sectionsByCourse.set(s.course_code, list)
+    }
+    const map = new Map<string, { key: string; label: string }[]>()
+    for (const m of majors) {
+      for (const block of m.semester_blocks ?? []) {
+        const key = `${m.program_code}:S${block.semester}`
+        const label = `${m.name} — Semester ${block.semester}`
+        for (const code of block.required_courses ?? []) {
+          const matches = sectionsByCourse.get(code) ?? []
+          for (const sec of matches) {
+            const existing = map.get(sec.id) ?? []
+            if (!existing.some((e) => e.key === key)) existing.push({ key, label })
+            map.set(sec.id, existing)
+          }
+        }
+      }
+    }
+    return map
+  }, [majors, sections])
 
   const filtered = useMemo(() => {
     const q = filters.search.trim().toLowerCase()
@@ -209,6 +250,52 @@ export function ScheduleView(props: ScheduleViewProps) {
       .map((k) => ({ key: k, color: rampColor(k) }))
   }, [filtered, filters.colorBy, instMap, roomMap, sectionMap])
 
+  // Returns the group buckets an assignment belongs to. May be >1 (cohort case)
+  // or empty (cohort with no major linkage → placed in "Other").
+  const groupsForAssignment = useCallback(
+    (a: Assignment): { key: string; label: string }[] => {
+      if (filters.groupBy === 'cohort') {
+        const list = cohortsBySection.get(a.section_id)
+        if (list && list.length) return list
+        return [{ key: '__other', label: 'Other (no cohort)' }]
+      }
+      if (filters.groupBy === 'instructor') {
+        const i = instMap.get(a.instructor_id)
+        return [{ key: a.instructor_id, label: i?.name ?? a.instructor_id }]
+      }
+      if (filters.groupBy === 'room') {
+        const r = roomMap.get(a.room_code)
+        return [{ key: a.room_code, label: r?.display_name ?? a.room_code }]
+      }
+      if (filters.groupBy === 'course') {
+        const sec = sectionMap.get(a.section_id)
+        const c = sec ? courseMap.get(sec.course_code) : null
+        const key = c?.code ?? sec?.course_code ?? a.section_id
+        const label = c ? `${c.code} — ${c.name_en}` : key
+        return [{ key, label }]
+      }
+      return [{ key: '__all', label: '' }]
+    },
+    [filters.groupBy, cohortsBySection, instMap, roomMap, sectionMap, courseMap],
+  )
+
+  // Partition filtered assignments into groups (ordered by label).
+  const grouped = useMemo(() => {
+    if (filters.groupBy === 'none' || filters.view !== 'calendar') return null
+    const buckets = new Map<string, { label: string; items: Assignment[] }>()
+    const source = filters.status === 'unplaced' ? [] : filtered
+    for (const a of source) {
+      for (const g of groupsForAssignment(a)) {
+        const b = buckets.get(g.key) ?? { label: g.label, items: [] }
+        b.items.push(a)
+        buckets.set(g.key, b)
+      }
+    }
+    return Array.from(buckets.entries())
+      .map(([key, v]) => ({ key, label: v.label, items: v.items }))
+      .sort((a, b) => a.label.localeCompare(b.label))
+  }, [filters.groupBy, filters.view, filters.status, filtered, groupsForAssignment])
+
   const activeFilterCount =
     filters.rooms.length + filters.instructors.length + filters.depts.length +
     (filters.bucket === 'all' ? 0 : 1) + (filters.status === 'all' ? 0 : 1)
@@ -218,7 +305,13 @@ export function ScheduleView(props: ScheduleViewProps) {
   }
 
   function resetFilters() {
-    setFilters({ ...DEFAULT_FILTERS, view: filters.view, colorBy: filters.colorBy, density: filters.density })
+    setFilters({
+      ...DEFAULT_FILTERS,
+      view: filters.view,
+      colorBy: filters.colorBy,
+      density: filters.density,
+      groupBy: filters.groupBy,
+    })
   }
 
   return (
@@ -278,37 +371,53 @@ export function ScheduleView(props: ScheduleViewProps) {
           onChange={(v) => update('view', v)}
           items={[
             { value: 'calendar', label: 'Calendar', icon: <CalendarIcon size={13} /> },
-            { value: 'rooms', label: 'By room', icon: <Building2 size={13} /> },
             { value: 'list', label: 'List', icon: <ListIcon size={13} /> },
           ]}
         />
         <div className="ml-auto flex items-center gap-3 flex-wrap">
-          <div className="flex items-center gap-2">
+          {filters.view === 'calendar' && (
+            <label className="flex items-center gap-2">
+              <span className="text-label">Group by</span>
+              <select
+                className="select"
+                style={{ width: 'auto', minWidth: 120 }}
+                value={filters.groupBy}
+                onChange={(e) => update('groupBy', e.target.value as GroupBy)}
+              >
+                <option value="none">None</option>
+                <option value="cohort">Cohort</option>
+                <option value="instructor">Instructor</option>
+                <option value="room">Room</option>
+                <option value="course">Course</option>
+              </select>
+            </label>
+          )}
+          <label className="flex items-center gap-2">
             <span className="text-label">Color by</span>
-            <Segment<ColorBy>
+            <select
+              className="select"
+              style={{ width: 'auto', minWidth: 120 }}
               value={filters.colorBy}
-              onChange={(v) => update('colorBy', v)}
-              size="sm"
-              options={[
-                { value: 'department', label: 'Dept' },
-                { value: 'instructor', label: 'Instructor' },
-                { value: 'room', label: 'Room' },
-                { value: 'language', label: 'Lang' },
-              ]}
-            />
-          </div>
-          <div className="flex items-center gap-2">
+              onChange={(e) => update('colorBy', e.target.value as ColorBy)}
+            >
+              <option value="department">Department</option>
+              <option value="instructor">Instructor</option>
+              <option value="room">Room</option>
+              <option value="language">Language</option>
+            </select>
+          </label>
+          <label className="flex items-center gap-2">
             <span className="text-label">Density</span>
-            <Segment
+            <select
+              className="select"
+              style={{ width: 'auto', minWidth: 100 }}
               value={filters.density}
-              onChange={(v) => update('density', v as 'cozy' | 'compact')}
-              size="sm"
-              options={[
-                { value: 'cozy', label: 'Cozy' },
-                { value: 'compact', label: 'Compact' },
-              ]}
-            />
-          </div>
+              onChange={(e) => update('density', e.target.value as 'cozy' | 'compact')}
+            >
+              <option value="cozy">Cozy</option>
+              <option value="compact">Compact</option>
+            </select>
+          </label>
         </div>
       </div>
 
@@ -434,27 +543,50 @@ export function ScheduleView(props: ScheduleViewProps) {
           />
         </div>
       ) : filters.view === 'calendar' ? (
-        <CalendarView
-          assignments={filters.status === 'unplaced' ? [] : filtered}
-          sectionMap={sectionMap}
-          courseMap={courseMap}
-          roomMap={roomMap}
-          instMap={instMap}
-          colorOf={colorOf}
-          density={filters.density}
-          onOpen={setOpenAssignment}
-        />
-      ) : filters.view === 'rooms' ? (
-        <RoomView
-          assignments={filters.status === 'unplaced' ? [] : filtered}
-          sectionMap={sectionMap}
-          courseMap={courseMap}
-          roomMap={roomMap}
-          instMap={instMap}
-          colorOf={colorOf}
-          density={filters.density}
-          onOpen={setOpenAssignment}
-        />
+        grouped ? (
+          grouped.length === 0 ? (
+            <div className="card">
+              <EmptyState title="Nothing to show" description="No assignments match the current filters." />
+            </div>
+          ) : (
+            <div className="flex flex-col gap-4">
+              {grouped.map((g) => (
+                <section key={g.key}>
+                  <div
+                    className="flex items-baseline justify-between"
+                    style={{ marginBottom: 8 }}
+                  >
+                    <h2 style={{ fontSize: 15, fontWeight: 600, margin: 0 }}>{g.label}</h2>
+                    <span className="text-caption">{g.items.length} session{g.items.length === 1 ? '' : 's'}</span>
+                  </div>
+                  <CalendarView
+                    assignments={g.items}
+                    sectionMap={sectionMap}
+                    courseMap={courseMap}
+                    roomMap={roomMap}
+                    instMap={instMap}
+                    colorOf={colorOf}
+                    density={filters.density}
+                    onOpen={setOpenAssignment}
+                    reservedBlock={reservedBlock}
+                  />
+                </section>
+              ))}
+            </div>
+          )
+        ) : (
+          <CalendarView
+            assignments={filters.status === 'unplaced' ? [] : filtered}
+            sectionMap={sectionMap}
+            courseMap={courseMap}
+            roomMap={roomMap}
+            instMap={instMap}
+            colorOf={colorOf}
+            density={filters.density}
+            onOpen={setOpenAssignment}
+            reservedBlock={reservedBlock}
+          />
+        )
       ) : (
         <ListView
           assignments={filters.status === 'unplaced' ? [] : filtered}
@@ -551,6 +683,45 @@ function FilterChips({
 // ---------------------------------------------------------------------------
 // Calendar view (the timetable grid)
 
+// Compute side-by-side lanes for overlapping assignments within a single day.
+// Returns one entry per input assignment (in original order) with the lane it
+// occupies and the total lane count for its overlap cluster.
+function computeLanes(items: Assignment[]): { lane: number; lanes: number }[] {
+  const n = items.length
+  if (n === 0) return []
+  const idx = items.map((_, i) => i).sort((x, y) => {
+    const dx = items[x]!.start_min - items[y]!.start_min
+    return dx !== 0 ? dx : items[y]!.end_min - items[x]!.end_min
+  })
+  const result: { lane: number; lanes: number }[] = new Array(n)
+  let cluster: number[] = []
+  let clusterEnd = -1
+  let laneEnds: number[] = []
+  const flushCluster = () => {
+    const lanes = laneEnds.length
+    for (const i of cluster) result[i] = { lane: result[i]!.lane, lanes }
+    cluster = []
+    laneEnds = []
+    clusterEnd = -1
+  }
+  for (const i of idx) {
+    const a = items[i]!
+    if (a.start_min >= clusterEnd && cluster.length) flushCluster()
+    let lane = laneEnds.findIndex((end) => end <= a.start_min)
+    if (lane === -1) {
+      lane = laneEnds.length
+      laneEnds.push(a.end_min)
+    } else {
+      laneEnds[lane] = a.end_min
+    }
+    result[i] = { lane, lanes: 0 }
+    cluster.push(i)
+    clusterEnd = Math.max(clusterEnd, a.end_min)
+  }
+  if (cluster.length) flushCluster()
+  return result
+}
+
 function CalendarView({
   assignments,
   sectionMap,
@@ -560,6 +731,7 @@ function CalendarView({
   colorOf,
   density,
   onOpen,
+  reservedBlock,
 }: {
   assignments: Assignment[]
   sectionMap: Map<string, Section>
@@ -569,22 +741,14 @@ function CalendarView({
   colorOf: (a: Assignment) => string
   density: 'cozy' | 'compact'
   onOpen: (a: Assignment) => void
+  reservedBlock?: ReservedBlock
 }) {
   const startMin = 8 * 60
   const endMin = 20 * 60
-  const slotMin = 30
-  const numSlots = (endMin - startMin) / slotMin
-  const slotHeight = density === 'compact' ? 24 : 32
-
-  const cellMap = new Map<string, Assignment[]>()
-  for (const a of assignments) {
-    if (!OPERATING_DAYS.includes(a.day)) continue
-    const slotIdx = Math.floor((a.start_min - startMin) / slotMin)
-    if (slotIdx < 0 || slotIdx >= numSlots) continue
-    const key = `${a.day}|${slotIdx}`
-    if (!cellMap.has(key)) cellMap.set(key, [])
-    cellMap.get(key)!.push(a)
-  }
+  const totalMin = endMin - startMin
+  const pxPerMin = density === 'compact' ? 24 / 30 : 32 / 30
+  const bodyHeight = totalMin * pxPerMin
+  const hourHeight = 60 * pxPerMin
 
   if (assignments.length === 0) {
     return (
@@ -594,13 +758,24 @@ function CalendarView({
     )
   }
 
+  // Group assignments by day, filter outside the visible window.
+  const byDay = new Map<Day, Assignment[]>()
+  for (const a of assignments) {
+    if (!OPERATING_DAYS.includes(a.day)) continue
+    if (a.end_min <= startMin || a.start_min >= endMin) continue
+    if (!byDay.has(a.day)) byDay.set(a.day, [])
+    byDay.get(a.day)!.push(a)
+  }
+
+  const totalHours = Math.ceil(totalMin / 60)
+
   return (
     <div className="card-flat" style={{ overflow: 'auto' }}>
       <div
         className="sched"
         style={{
           gridTemplateColumns: `64px repeat(${OPERATING_DAYS.length}, minmax(200px, 1fr))`,
-          gridAutoRows: `${slotHeight}px`,
+          gridTemplateRows: 'auto 1fr',
         }}
       >
         <div className="hdr" />
@@ -609,278 +784,148 @@ function CalendarView({
             {DAY_LABEL[d]}
           </div>
         ))}
-        {Array.from({ length: numSlots }).map((_, slotIdx) => {
-          const t = startMin + slotIdx * slotMin
-          const showLabel = t % 60 === 0
-          return (
-            <CalendarRow
-              key={slotIdx}
-              slotIdx={slotIdx}
-              showLabel={showLabel}
-              label={minToHHMM(t)}
-              cellMap={cellMap}
-              slotMin={slotMin}
-              slotHeight={slotHeight}
-              sectionMap={sectionMap}
-              courseMap={courseMap}
-              roomMap={roomMap}
-              instMap={instMap}
-              colorOf={colorOf}
-              onOpen={onOpen}
-            />
-          )
-        })}
-      </div>
-    </div>
-  )
-}
 
-function CalendarRow({
-  slotIdx,
-  showLabel,
-  label,
-  cellMap,
-  slotMin,
-  slotHeight,
-  sectionMap,
-  courseMap,
-  roomMap,
-  instMap,
-  colorOf,
-  onOpen,
-}: {
-  slotIdx: number
-  showLabel: boolean
-  label: string
-  cellMap: Map<string, Assignment[]>
-  slotMin: number
-  slotHeight: number
-  sectionMap: Map<string, Section>
-  courseMap: Map<string, Course>
-  roomMap: Map<string, Room>
-  instMap: Map<string, Instructor>
-  colorOf: (a: Assignment) => string
-  onOpen: (a: Assignment) => void
-}) {
-  return (
-    <>
-      <div className="time">{showLabel ? label : ''}</div>
-      {OPERATING_DAYS.map((d) => {
-        const evs = cellMap.get(`${d}|${slotIdx}`) || []
-        return (
-          <div key={d + slotIdx} className="cell">
-            {evs.map((a, i) => {
-              const sec = sectionMap.get(a.section_id)
-              const c = sec ? courseMap.get(sec.course_code) : null
-              const r = roomMap.get(a.room_code)
-              const inst = instMap.get(a.instructor_id)
-              const rows = Math.max(1, Math.round((a.end_min - a.start_min) / slotMin))
-              const bg = colorOf(a)
-              return (
-                <button
-                  type="button"
-                  key={a.section_id + '-' + a.day + '-' + i}
-                  className={`sched-block ${courseClass(c?.code || '')}`}
-                  onClick={() => onOpen(a)}
-                  style={{
-                    minHeight: rows * slotHeight + 'px',
-                    background: bg,
-                    border: 'none',
-                    width: '100%',
-                    textAlign: 'left',
-                  }}
-                  title={`${c?.code || ''} · ${c?.name_en || ''}\n${minToHHMM(a.start_min)}–${minToHHMM(a.end_min)}\n${r?.display_name || a.room_code}\n${inst?.name || a.instructor_id}`}
-                >
-                  <div className="code">{c?.code}</div>
-                  <div className="meta">
-                    {minToHHMM(a.start_min)}–{minToHHMM(a.end_min)}
-                  </div>
-                  <div className="meta">{r?.code || a.room_code}</div>
-                </button>
-              )
-            })}
-          </div>
-        )
-      })}
-    </>
-  )
-}
-
-// ---------------------------------------------------------------------------
-// Room view — swimlanes per room
-
-function RoomView({
-  assignments,
-  sectionMap,
-  courseMap,
-  roomMap,
-  instMap,
-  colorOf,
-  density,
-  onOpen,
-}: {
-  assignments: Assignment[]
-  sectionMap: Map<string, Section>
-  courseMap: Map<string, Course>
-  roomMap: Map<string, Room>
-  instMap: Map<string, Instructor>
-  colorOf: (a: Assignment) => string
-  density: 'cozy' | 'compact'
-  onOpen: (a: Assignment) => void
-}) {
-  const startMin = 8 * 60
-  const endMin = 20 * 60
-  const totalMin = endMin - startMin
-  const pixelsPerMin = density === 'compact' ? 1.2 : 1.6
-  const rowHeight = density === 'compact' ? 32 : 40
-
-  // group by room then by day
-  const byRoom = new Map<string, Assignment[]>()
-  for (const a of assignments) {
-    if (!byRoom.has(a.room_code)) byRoom.set(a.room_code, [])
-    byRoom.get(a.room_code)!.push(a)
-  }
-  const roomList = Array.from(byRoom.keys()).sort((a, b) => {
-    const ra = roomMap.get(a)?.display_name || a
-    const rb = roomMap.get(b)?.display_name || b
-    return ra.localeCompare(rb)
-  })
-
-  if (roomList.length === 0) {
-    return (
-      <div className="card">
-        <EmptyState title="No room data" description="No assignments match the current filters." />
-      </div>
-    )
-  }
-
-  const hourMarks = Array.from({ length: 13 }).map((_, i) => 8 + i)
-
-  return (
-    <div className="card-flat" style={{ overflow: 'auto' }}>
-      {roomList.map((rc, ri) => {
-        const r = roomMap.get(rc)
-        const list = byRoom.get(rc) ?? []
-        return (
-          <div key={rc} style={{ borderBottom: ri === roomList.length - 1 ? 'none' : '1px solid var(--line-soft)' }}>
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '180px 1fr',
-                gap: 0,
-                alignItems: 'stretch',
-                minHeight: rowHeight * OPERATING_DAYS.length + 18,
-              }}
-            >
-              <div style={{ padding: '12px 14px', background: 'var(--surface-2)', borderRight: '1px solid var(--line)' }}>
-                <div style={{ fontWeight: 600, fontSize: 13 }}>{r?.display_name || rc}</div>
-                <div className="text-caption">cap {r?.capacity ?? '?'} · {list.length} sessions</div>
+        {/* Time gutter */}
+        <div className="time" style={{ position: 'relative', height: bodyHeight, padding: 0 }}>
+          {Array.from({ length: totalHours + 1 }).map((_, h) => {
+            const m = startMin + h * 60
+            if (m > endMin) return null
+            const top = h * hourHeight
+            return (
+              <div
+                key={h}
+                style={{
+                  position: 'absolute',
+                  top,
+                  right: 6,
+                  transform: 'translateY(-50%)',
+                  fontSize: 11,
+                  color: 'var(--muted)',
+                  fontVariantNumeric: 'tabular-nums',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {minToHHMM(m)}
               </div>
-              <div style={{ position: 'relative', padding: '6px 0' }}>
-                {/* hour grid */}
+            )
+          })}
+        </div>
+
+        {/* Day columns */}
+        {OPERATING_DAYS.map((d) => {
+          const list = byDay.get(d) ?? []
+          const lanes = computeLanes(list)
+          const showReserved =
+            reservedBlock?.enabled &&
+            reservedBlock.day === d &&
+            reservedBlock.endMin > startMin &&
+            reservedBlock.startMin < endMin
+          return (
+            <div
+              key={d}
+              className="cell"
+              style={{ position: 'relative', height: bodyHeight, padding: 0 }}
+            >
+              {/* Hour grid lines */}
+              {Array.from({ length: totalHours + 1 }).map((_, h) => (
+                <div
+                  key={h}
+                  style={{
+                    position: 'absolute',
+                    left: 0,
+                    right: 0,
+                    top: h * hourHeight,
+                    borderTop:
+                      h === 0 || h === totalHours
+                        ? 'none'
+                        : '1px solid var(--line-soft)',
+                  }}
+                />
+              ))}
+              {/* Reserved-block overlay */}
+              {showReserved && (
                 <div
                   style={{
                     position: 'absolute',
-                    inset: 0,
+                    left: 0,
+                    right: 0,
+                    top: (Math.max(reservedBlock!.startMin, startMin) - startMin) * pxPerMin,
+                    height:
+                      (Math.min(reservedBlock!.endMin, endMin) -
+                        Math.max(reservedBlock!.startMin, startMin)) *
+                      pxPerMin,
+                    background:
+                      'repeating-linear-gradient(135deg, rgba(120,120,120,0.10) 0 8px, rgba(120,120,120,0.18) 8px 16px)',
+                    borderTop: '1px solid rgba(120,120,120,0.35)',
+                    borderBottom: '1px solid rgba(120,120,120,0.35)',
                     display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    pointerEvents: 'none',
+                    zIndex: 1,
                   }}
+                  title={`Reserved: ${minToHHMM(reservedBlock!.startMin)}–${minToHHMM(reservedBlock!.endMin)}`}
                 >
-                  {hourMarks.map((h, i) => (
-                    <div
-                      key={h}
-                      style={{
-                        flex: 1,
-                        borderLeft: i === 0 ? 'none' : '1px dashed var(--line-soft)',
-                        position: 'relative',
-                      }}
-                    >
-                      {ri === 0 && (
-                        <span
-                          style={{
-                            position: 'absolute',
-                            top: -4,
-                            left: 4,
-                            fontSize: 10,
-                            color: 'var(--muted)',
-                            fontVariantNumeric: 'tabular-nums',
-                          }}
-                        >
-                          {h}:00
-                        </span>
-                      )}
-                    </div>
-                  ))}
-                </div>
-                {OPERATING_DAYS.map((d, di) => (
-                  <div
-                    key={d}
+                  <span
                     style={{
-                      position: 'relative',
-                      height: rowHeight,
-                      display: 'flex',
-                      alignItems: 'center',
-                      borderTop: di === 0 ? 'none' : '1px solid var(--line-soft)',
+                      fontSize: 10,
+                      fontWeight: 600,
+                      letterSpacing: '0.06em',
+                      textTransform: 'uppercase',
+                      color: 'var(--muted)',
+                      background: 'var(--surface)',
+                      padding: '2px 6px',
+                      borderRadius: 4,
                     }}
                   >
-                    <span
-                      style={{
-                        position: 'absolute',
-                        left: 6,
-                        fontSize: 10.5,
-                        color: 'var(--muted)',
-                        fontWeight: 600,
-                        zIndex: 2,
-                      }}
-                    >
-                      {DAY_LABEL[d]}
-                    </span>
-                    {list
-                      .filter((a) => a.day === d)
-                      .map((a, i) => {
-                        const sec = sectionMap.get(a.section_id)
-                        const c = sec ? courseMap.get(sec.course_code) : null
-                        const inst = instMap.get(a.instructor_id)
-                        const left = ((a.start_min - startMin) / totalMin) * 100
-                        const width = ((a.end_min - a.start_min) / totalMin) * 100
-                        return (
-                          <button
-                            key={a.section_id + '-' + i}
-                            type="button"
-                            onClick={() => onOpen(a)}
-                            className="sched-block"
-                            style={{
-                              position: 'absolute',
-                              left: `${left}%`,
-                              width: `${width}%`,
-                              top: 4,
-                              bottom: 4,
-                              background: colorOf(a),
-                              border: 'none',
-                              padding: '4px 6px',
-                              fontSize: 11,
-                              cursor: 'pointer',
-                              overflow: 'hidden',
-                              textAlign: 'left',
-                            }}
-                            title={`${c?.code || ''} · ${minToHHMM(a.start_min)}–${minToHHMM(a.end_min)} · ${inst?.name || a.instructor_id}`}
-                          >
-                            <div className="code">{c?.code}</div>
-                            <div className="meta">
-                              {minToHHMM(a.start_min)}–{minToHHMM(a.end_min)}
-                            </div>
-                          </button>
-                        )
-                      })}
-                  </div>
-                ))}
-              </div>
+                    Reserved
+                  </span>
+                </div>
+              )}
+              {list.map((a, i) => {
+                const sec = sectionMap.get(a.section_id)
+                const c = sec ? courseMap.get(sec.course_code) : null
+                const r = roomMap.get(a.room_code)
+                const inst = instMap.get(a.instructor_id)
+                const top = (Math.max(a.start_min, startMin) - startMin) * pxPerMin
+                const height = (Math.min(a.end_min, endMin) - Math.max(a.start_min, startMin)) * pxPerMin
+                const { lane, lanes: laneCount } = lanes[i]!
+                const widthPct = 100 / Math.max(1, laneCount)
+                const leftPct = lane * widthPct
+                const bg = colorOf(a)
+                return (
+                  <button
+                    type="button"
+                    key={a.section_id + '-' + a.day + '-' + i}
+                    className={`sched-block ${courseClass(c?.code || '')}`}
+                    onClick={() => onOpen(a)}
+                    style={{
+                      position: 'absolute',
+                      top,
+                      height: Math.max(height - 2, 12),
+                      left: `calc(${leftPct}% + 2px)`,
+                      width: `calc(${widthPct}% - 4px)`,
+                      background: bg,
+                      border: 'none',
+                      textAlign: 'left',
+                      overflow: 'hidden',
+                    }}
+                    title={`${c?.code || ''} · ${c?.name_en || ''}\n${minToHHMM(a.start_min)}–${minToHHMM(a.end_min)}\n${r?.display_name || a.room_code}\n${inst?.name || a.instructor_id}`}
+                  >
+                    <div className="code">{c?.code}</div>
+                    {height >= 28 && (
+                      <div className="meta">
+                        {minToHHMM(a.start_min)}–{minToHHMM(a.end_min)}
+                      </div>
+                    )}
+                    {height >= 44 && <div className="meta">{r?.code || a.room_code}</div>}
+                  </button>
+                )
+              })}
             </div>
-          </div>
-        )
-      })}
-      <style>{`@media (max-width: 800px) { .room-swimlane { font-size: 11px; } }`}</style>
-      {/* satisfy linter */}
-      <span style={{ display: 'none' }}>{pixelsPerMin}</span>
+          )
+        })}
+      </div>
     </div>
   )
 }
