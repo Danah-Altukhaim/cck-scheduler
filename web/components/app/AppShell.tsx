@@ -2,8 +2,6 @@
 
 import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { useRouter } from 'next/navigation'
-
-const SIDEBAR_COLLAPSED_KEY = 'cck.sidebar.collapsed'
 import {
   LayoutDashboard,
   CalendarRange,
@@ -26,6 +24,8 @@ import { Sidebar } from './Sidebar'
 import { Topbar } from './Topbar'
 import { CommandPalette, type CommandItem } from '../ui/CommandPalette'
 import type { ScheduleMeta } from '@/lib/schedules'
+
+const SIDEBAR_COLLAPSED_KEY = 'cck.sidebar.collapsed'
 
 interface AppShellProps {
   scheduleId: string
