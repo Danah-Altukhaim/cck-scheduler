@@ -23,7 +23,6 @@ export async function PUT(req: NextRequest) {
       operatingWindow: body.operatingWindow ?? current.operatingWindow,
       mondayBlock: body.mondayBlock ?? current.mondayBlock,
       buckets: body.buckets ?? current.buckets,
-      workingStudentShare: body.workingStudentShare ?? current.workingStudentShare,
       customRules: current.customRules,
     })
     return NextResponse.json({ ok: true, config: getConfig(sid) })

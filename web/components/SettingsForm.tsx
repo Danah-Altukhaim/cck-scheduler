@@ -229,27 +229,10 @@ export function SettingsForm({
             onChange={(w) => setCfg({ ...cfg, buckets: { ...cfg.buckets, midday: w } })}
           />
         </Row>
-        <Row label="Evening bucket">
+        <Row label="Evening bucket" last>
           <TimeRange
             win={cfg.buckets.evening}
             onChange={(w) => setCfg({ ...cfg, buckets: { ...cfg.buckets, evening: w } })}
-          />
-        </Row>
-
-        <Row
-          label="Working-student share"
-          hint="Fraction of demand placed in evening sections (0–1)."
-          last
-        >
-          <input
-            type="number"
-            step="0.05"
-            min="0"
-            max="1"
-            className="input"
-            style={{ width: 120 }}
-            value={cfg.workingStudentShare}
-            onChange={(e) => setCfg({ ...cfg, workingStudentShare: Number(e.target.value) })}
           />
         </Row>
       </div>

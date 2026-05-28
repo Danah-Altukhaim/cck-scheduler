@@ -98,6 +98,12 @@ function hashStr(str: string): number {
 function rampColor(key: string): string {
   return COLOR_RAMP[hashStr(key) % COLOR_RAMP.length]!
 }
+function shortInstructorName(name: string): string {
+  const parts = name.trim().split(/\s+/).filter(Boolean)
+  if (parts.length === 0) return name
+  if (parts.length === 1) return parts[0]!
+  return `Dr. ${parts[parts.length - 1]}`
+}
 
 export function ScheduleView(props: ScheduleViewProps) {
   const { rooms, instructors, courses, sections, majors, assignments, scheduleId, reservedBlock } = props
@@ -919,6 +925,9 @@ function CalendarView({
                       </div>
                     )}
                     {height >= 44 && <div className="meta">{r?.code || a.room_code}</div>}
+                    {height >= 58 && inst && (
+                      <div className="meta">{shortInstructorName(inst.name)}</div>
+                    )}
                   </button>
                 )
               })}

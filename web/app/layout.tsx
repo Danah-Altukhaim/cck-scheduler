@@ -1,6 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { ToastProvider } from '@/components/ui'
+import { ChatWidget } from '@/components/ChatWidget'
 
 export const metadata: Metadata = {
   title: 'CCK AI Scheduler',
@@ -12,6 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <ToastProvider>{children}</ToastProvider>
+        <ChatWidget />
       </body>
     </html>
   )

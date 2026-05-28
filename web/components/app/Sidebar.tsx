@@ -23,6 +23,7 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 import type { ReactNode } from 'react'
+import { BrandMark } from './BrandMark'
 
 interface SidebarCount {
   sections?: number
@@ -118,8 +119,7 @@ export function Sidebar({
           style={{ textDecoration: 'none' }}
           title={collapsed ? 'AI Scheduler' : undefined}
         >
-          <span className="sidebar-brand-badge">CCK</span>
-          <span className="sidebar-brand-label">AI Scheduler</span>
+          <BrandMark size={15} compact={collapsed} label={collapsed ? undefined : 'AI Scheduler'} />
         </Link>
         {onToggle && (
           <button

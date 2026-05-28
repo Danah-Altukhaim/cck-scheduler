@@ -76,13 +76,13 @@ const coursesMap = new Map<string, Course>(plan.courses.map((c) => [c.code, c]))
 console.log('\nStage 1 — demand planner')
 const enrollment = plan.enrollment ?? []
 let forecast
-let workingShare = config.workingStudentShare
+let workingShare = 0.2
 if (enrollment.length > 0) {
   const r = forecastFromEnrollment(enrollment, plan.majors as MajorSheet[])
   forecast = r.forecast
   workingShare = r.workingShare
   const students = enrollment.reduce((s, e) => s + (e.count || 0), 0)
-  console.log(`  Demand source: ${enrollment.length} enrollment rows (${students} students)`)
+  console.log(`  Demand source: ${enrollment.length} enrollment rows (${students} students, working-share ${workingShare.toFixed(2)})`)
 } else {
   forecast = synthesizeForecastFromBaseline(
     plan.baseline_assignments as Assignment[],

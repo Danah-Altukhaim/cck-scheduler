@@ -197,15 +197,15 @@ export function SchedulesList({ initial }: { initial: ScheduleMeta[] }) {
             const placed = !!s.lastSolvedAt
             return (
               <div key={s.id} className="card p-5 flex flex-col gap-3 card-link" style={{ position: 'relative' }}>
-                <Link href={`/s/${s.id}`} aria-label={`Open ${s.label}`} style={{ position: 'absolute', inset: 0 }} />
-                <div className="flex items-start justify-between" style={{ position: 'relative' }}>
+                <Link href={`/s/${s.id}`} aria-label={`Open ${s.label}`} style={{ position: 'absolute', inset: 0, zIndex: 1 }} />
+                <div className="flex items-start justify-between" style={{ position: 'relative', zIndex: 2, pointerEvents: 'none' }}>
                   <div
                     className="flex items-center justify-center rounded-lg"
                     style={{ width: 38, height: 38, background: 'var(--accent-soft)' }}
                   >
                     <CalendarDays size={18} color="var(--accent)" />
                   </div>
-                  <div style={{ position: 'relative', zIndex: 1 }}>
+                  <div style={{ position: 'relative', zIndex: 1, pointerEvents: 'auto' }}>
                     <button
                       type="button"
                       className="btn btn-ghost btn-icon btn-sm"
@@ -255,8 +255,8 @@ export function SchedulesList({ initial }: { initial: ScheduleMeta[] }) {
                     )}
                   </div>
                 </div>
-                <div style={{ position: 'relative' }}>
-                  <div className="text-h3" style={{ marginBottom: 2 }}>{s.label}</div>
+                <div style={{ position: 'relative', zIndex: 2, pointerEvents: 'none' }}>
+                  <div className="text-h4" style={{ marginBottom: 2 }}>{s.label}</div>
                   <div className="text-caption">
                     {placed ? `${s.placed} of ${s.total} sections placed` : 'Not generated yet'}
                   </div>
@@ -266,7 +266,7 @@ export function SchedulesList({ initial }: { initial: ScheduleMeta[] }) {
                     <span style={{ width: `${pct}%` }} />
                   </div>
                 )}
-                <div className="flex items-center gap-3 mt-auto" style={{ position: 'relative' }}>
+                <div className="flex items-center gap-3 mt-auto" style={{ position: 'relative', zIndex: 2, pointerEvents: 'none' }}>
                   <span className={`badge ${placed ? 'green' : 'muted'}`}>
                     {placed ? <CheckCircle2 size={11} /> : <Clock size={11} />}
                     {placed ? `${pct}% placed` : 'Pending'}

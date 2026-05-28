@@ -23,7 +23,6 @@ export interface SolverConfig {
   operatingWindow: Window
   mondayBlock: { enabled: boolean; day: string; startMin: number; endMin: number }
   buckets: { morning: Window; midday: Window; evening: Window }
-  workingStudentShare: number
   customRules: CustomRule[]
 }
 
@@ -36,7 +35,6 @@ export const DEFAULT_CONFIG: SolverConfig = {
     midday: { startMin: 660, endMin: 960 },
     evening: { startMin: 960, endMin: 1190 },
   },
-  workingStudentShare: 0.2,
   customRules: [],
 }
 
